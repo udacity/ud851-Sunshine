@@ -18,6 +18,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--TODO (2) Replace ScrollView and TextView with RecyclerView-->
+    <!--TODO (3) Give the RecyclerView an id of @+id/recyclerview_forecast-->
+    <!--TODO (4) Set the width and the height of the RecyclerView to match_parent-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -30,10 +33,6 @@
             android:textSize="20sp" />
     </ScrollView>
 
-    <!--COMPLETED (2) Add a TextView that you will show the user if there is an error loading content-->
-    <!--COMPLETED (3) Make the width and the height wrap_content-->
-    <!--COMPLETED (4) Give the TextView a default error message stating that an error occurred (use strings.xml)-->
-    <!--COMPLETED (5) Set the default visibility of the TextView to invisible-->
     <TextView
         android:id="@+id/tv_error_message_display"
         android:layout_width="wrap_content"
@@ -43,10 +42,6 @@
         android:textSize="20sp"
         android:visibility="invisible" />
 
-    <!--COMPLETED (12) Add a ProgressBar to show the user content is loading-->
-    <!--COMPLETED (13) Make the width and height of the ProgressBar 42dp-->
-    <!--COMPLETED (14) Set the layout_gravity of the ProgressBar to center-->
-    <!--COMPLETED (15) Set the default visibility of the ProgressBar to invisible-->
     <ProgressBar
         android:id="@+id/pb_loading_indicator"
         android:layout_height="42dp"
