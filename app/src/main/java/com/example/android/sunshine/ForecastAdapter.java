@@ -31,15 +31,12 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
     private String[] mWeatherData;
 
-    // COMPLETED (3) Create a final private ForecastAdapterOnClickHandler called mClickHandler
     /*
      * An on-click handler that we've defined to make it easy for an Activity to interface with
      * our RecyclerView
      */
     private final ForecastAdapterOnClickHandler mClickHandler;
 
-    // COMPLETED (1) Add an interface called ForecastAdapterOnClickHandler
-    // COMPLETED (2) Within that interface, define a void method that access a String as a parameter
     /**
      * The interface that receives onClick messages.
      */
@@ -47,7 +44,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         void onClick(String weatherForDay);
     }
 
-    // COMPLETED (4) Add a ForecastAdapterOnClickHandler as a parameter to the constructor and store it in mClickHandler
     /**
      * Creates a ForecastAdapter.
      *
@@ -58,7 +54,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         mClickHandler = clickHandler;
     }
 
-    // COMPLETED (5) Implement OnClickListener in the ForecastAdapterViewHolder class
     /**
      * Cache of the children views for a forecast list item.
      */
@@ -68,11 +63,9 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         public ForecastAdapterViewHolder(View view) {
             super(view);
             mWeatherTextView = (TextView) view.findViewById(R.id.tv_weather_data);
-            // COMPLETED (7) Call setOnClickListener on the view passed into the constructor (use 'this' as the OnClickListener)
             view.setOnClickListener(this);
         }
 
-        // COMPLETED (6) Override onClick, passing the clicked day's data to mClickHandler via its onClick method
         /**
          * This gets called by the child views during a click.
          *
