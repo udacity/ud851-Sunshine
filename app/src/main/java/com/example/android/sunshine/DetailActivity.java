@@ -21,7 +21,6 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent intentThatStartedThisActivity = getIntent();
 
-        // COMPLETED (2) Display the weather forecast that was passed from MainActivity
         if (intentThatStartedThisActivity != null) {
             if (intentThatStartedThisActivity.hasExtra(Intent.EXTRA_TEXT)) {
                 mForecast = intentThatStartedThisActivity.getStringExtra(Intent.EXTRA_TEXT);
@@ -29,4 +28,7 @@ public class DetailActivity extends AppCompatActivity {
             }
         }
     }
+
+    // TODO (3) Create a menu with an item with id of action_share
+    // TODO (4) Display the menu and implement the forecast sharing functionality
 }
