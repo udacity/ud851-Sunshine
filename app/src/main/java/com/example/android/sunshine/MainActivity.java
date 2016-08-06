@@ -201,6 +201,31 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
         }
     }
 
+    /**
+     * This method uses the URI scheme for showing a location found on a
+     * map. This super-handy intent is detailed in the "Common Intents"
+     * page of Android's developer site:
+     *
+     * @see <a"http://developer.android.com/guide/components/intents-common.html#Maps">
+     *
+     * Hint: Hold Command on Mac or Control on Windows and click that link
+     * to automagically open the Common Intents page
+     */
+    private void openLocationInMap() {
+        String addressString = "1600 Ampitheatre Parkway, CA";
+        Uri geoLocation = Uri.parse("geo:0,0?q=" + addressString);
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geoLocation);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Log.d(TAG, "Couldn't call " + geoLocation.toString()
+                    + ", no receiving apps installed!");
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         /* Use AppCompatActivity's method getMenuInflater to get a handle on the menu inflater */
@@ -221,7 +246,11 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
             return true;
         }
 
-        // TODO (2) Launch the map when the map menu item is clicked
+        // COMPLETED (2) Launch the map when the map menu item is clicked
+        if (id == R.id.action_map) {
+            openLocationInMap();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
