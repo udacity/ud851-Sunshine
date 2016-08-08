@@ -11,12 +11,11 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!--COMPLETED (3) Create a menu with an item with id of action_share-->
 <!-- the menu found in the single day forecast detail -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.android.sunshine.DetailActivity">
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.example.android.sunshine.DetailActivity">
     <item
         android:id="@+id/action_share"
         android:icon="@drawable/abc_ic_menu_share_mtrl_alpha"

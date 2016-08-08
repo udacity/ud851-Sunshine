@@ -24,7 +24,6 @@
         android:orderInCategory="1"
         android:title="@string/action_refresh"
         app:showAsAction="ifRoom"/>
-    <!--COMPLETED (1) Add a menu item to open the map-->
     <item
         android:id="@+id/action_map"
         android:title="@string/action_map"
