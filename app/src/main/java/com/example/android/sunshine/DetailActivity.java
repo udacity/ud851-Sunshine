@@ -32,7 +32,6 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    // COMPLETED (4) Display the menu and implement the forecast sharing functionality
     /**
      * Uses the ShareCompat Intent builder to create our Forecast intent for sharing. We set the
      * type of content that we are sharing (just regular text), the text itself, and we return the

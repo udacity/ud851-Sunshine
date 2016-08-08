@@ -38,6 +38,7 @@ import com.example.android.sunshine.utilities.OpenWeatherJsonUtils;
 
 import java.net.URL;
 
+// TODO (1) Implement the proper LoaderCallbacks interface and the methods of that interface
 public class MainActivity extends AppCompatActivity implements ForecastAdapterOnClickHandler {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
          */
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
+        // TODO (7) Remove the code for the AsyncTask and initialize the AsyncTaskLoader
         /* Once all of our views are setup, we can load the weather data. */
         loadWeatherData();
     }
@@ -111,6 +113,11 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
         String location = SunshinePreferences.getPreferredWeatherLocation(this);
         new FetchWeatherTask().execute(location);
     }
+
+    // TODO (2) Within onCreateLoader, return a new AsyncTaskLoader that looks a lot like the existing FetchWeatherTask.
+    // TODO (3) Cache the weather data in a member variable and deliver it in onStartLoading.
+
+    // TODO (4) When the load is finished, show either the data or an error message if there is no data
 
     /**
      * This method is overridden by our MainActivity class in order to handle RecyclerView item
@@ -155,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
         mErrorMessageDisplay.setVisibility(View.VISIBLE);
     }
 
+    // TODO (6) Remove any and all code from MainActivity that references FetchWeatherTask
     public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
 
         @Override
@@ -240,13 +248,13 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        // TODO (5) Refactor the refresh functionality to work with our AsyncTaskLoader
         if (id == R.id.action_refresh) {
             mForecastAdapter.setWeatherData(null);
             loadWeatherData();
             return true;
         }
 
-        // COMPLETED (2) Launch the map when the map menu item is clicked
         if (id == R.id.action_map) {
             openLocationInMap();
             return true;
