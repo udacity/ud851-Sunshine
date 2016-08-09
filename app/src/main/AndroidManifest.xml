@@ -34,7 +34,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--COMPLETED (4) Configure DetailActivity's up button functionality-->
         <activity
             android:name=".DetailActivity"
             android:parentActivityName=".MainActivity">

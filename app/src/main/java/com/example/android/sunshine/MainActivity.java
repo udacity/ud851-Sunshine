@@ -117,9 +117,9 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
     @Override
     public void onClick(String weatherForDay) {
         Context context = this;
-        // COMPLETED (3) Remove the Toast and launch the DetailActivity using an explicit Intent
         Class destinationClass = DetailActivity.class;
         Intent intentToStartDetailActivity = new Intent(context, destinationClass);
+        // TODO (1) Pass the weather to the DetailActivity
         startActivity(intentToStartDetailActivity);
     }
 
