@@ -35,7 +35,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
      * An on-click handler that we've defined to make it easy for an Activity to interface with
      * our RecyclerView
      */
-    private final ForecastAdapterOnClickHandler mClickHandler;
+    final private ForecastAdapterOnClickHandler mClickHandler;
 
     /**
      * The interface that receives onClick messages.

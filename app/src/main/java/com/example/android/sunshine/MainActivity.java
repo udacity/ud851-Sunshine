@@ -39,7 +39,6 @@ import com.example.android.sunshine.utilities.OpenWeatherJsonUtils;
 
 import java.net.URL;
 
-// COMPLETED (1) Implement the proper LoaderCallbacks interface and the methods of that interface
 public class MainActivity extends AppCompatActivity implements
         ForecastAdapter.ForecastAdapterOnClickHandler,
         LoaderCallbacks<String[]> {
@@ -70,13 +69,24 @@ public class MainActivity extends AppCompatActivity implements
         mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
 
         /*
-         * LinearLayoutManager can support HORIZONTAL or VERTICAL orientations. The reverse layout
-         * parameter is useful mostly for HORIZONTAL layouts that should reverse for right to left
-         * languages.
+         * A LinearLayoutManager is responsible for measuring and positioning item views within a
+         * RecyclerView into a linear list. This means that it can produce either a horizontal or
+         * vertical list depending on which parameter you pass in to the LinearLayoutManager
+         * constructor. In our case, we want a vertical list, so we pass in the constant from the
+         * LinearLayoutManager class for vertical lists, LinearLayoutManager.VERTICAL.
+         *
+         * There are other LayoutManagers available to display your data in uniform grids,
+         * staggered grids, and more! See the developer documentation for more details.
          */
-        LinearLayoutManager layoutManager
-                = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        int recyclerViewOrientation = LinearLayoutManager.VERTICAL;
 
+        /*
+         *  This value should be true if you want to reverse your layout. Generally, this is only
+         *  true with horizontal lists that need to support a right-to-left layout.
+         */
+        boolean shouldReverseLayout = false;
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(this, recyclerViewOrientation, shouldReverseLayout);
         mRecyclerView.setLayoutManager(layoutManager);
 
         /*
@@ -103,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements
          */
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
-        // COMPLETED (7) Remove the code for the AsyncTask and initialize the AsyncTaskLoader
         /*
          * This ID will uniquely identify the Loader. We can use it, for example, to get a handle
          * on our Loader at a later point in time through the support LoaderManager.
@@ -132,9 +141,10 @@ public class MainActivity extends AppCompatActivity implements
          * the last created loader is re-used.
          */
         getSupportLoaderManager().initLoader(loaderId, bundleForLoader, callback);
+
+        Log.d(TAG, "onCreate: registering preference changed listener");
     }
 
-    // COMPLETED (2) Within onCreateLoader, return a new AsyncTaskLoader that looks a lot like the existing FetchWeatherTask.
     /**
      * Instantiate and return a new Loader for the given ID.
      *
@@ -151,7 +161,6 @@ public class MainActivity extends AppCompatActivity implements
             /* This String array will hold and help cache our weather data */
             String[] mWeatherData = null;
 
-            // COMPLETED (3) Cache the weather data in a member variable and deliver it in onStartLoading.
             /**
              * Subclasses of AsyncTaskLoader must implement this to take care of loading their data.
              */
@@ -206,7 +215,6 @@ public class MainActivity extends AppCompatActivity implements
         };
     }
 
-    // COMPLETED (4) When the load is finished, show either the data or an error message if there is no data
     /**
      * Called when a previously created loader has finished its load.
      *
@@ -258,7 +266,6 @@ public class MainActivity extends AppCompatActivity implements
      * open the Common Intents page
      */
     private void openLocationInMap() {
-
         String addressString = "1600 Ampitheatre Parkway, CA";
         Uri geoLocation = Uri.parse("geo:0,0?q=" + addressString);
 
@@ -314,8 +321,6 @@ public class MainActivity extends AppCompatActivity implements
         mErrorMessageDisplay.setVisibility(View.VISIBLE);
     }
 
-    // COMPLETED (6) Remove any and all code from MainActivity that references FetchWeatherTask
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         /* Use AppCompatActivity's method getMenuInflater to get a handle on the menu inflater */
@@ -330,7 +335,6 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        // COMPLETED (5) Refactor the refresh functionality to work with our AsyncTaskLoader
         if (id == R.id.action_refresh) {
             invalidateData();
             getSupportLoaderManager().restartLoader(FORECAST_LOADER_ID, null, this);
@@ -341,6 +345,12 @@ public class MainActivity extends AppCompatActivity implements
             openLocationInMap();
             return true;
         }
+
+        // TODO (1) Add new Activity called SettingsActivity using Android Studio wizard
+        // Do step 2 in SettingsActivity
+        // TODO (2) Set setDisplayHomeAsUpEnabled to true on the support ActionBar
+
+        // TODO (6) Launch SettingsActivity when the Settings option is clicked
 
         return super.onOptionsItemSelected(item);
     }

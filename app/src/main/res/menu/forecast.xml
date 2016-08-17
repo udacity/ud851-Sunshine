@@ -24,6 +24,7 @@
         android:orderInCategory="1"
         android:title="@string/action_refresh"
         app:showAsAction="ifRoom"/>
+    <!--TODO (4) Add a Settings option to the main menu-->
     <item
         android:id="@+id/action_map"
         android:title="@string/action_map"
