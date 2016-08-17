@@ -54,4 +54,6 @@ public class DetailActivity extends AppCompatActivity {
         menuItem.setIntent(createShareForecastIntent());
         return true;
     }
+
+    // TODO (7) Launch SettingsActivity when the Settings option is clicked
 }

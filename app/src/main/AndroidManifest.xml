@@ -26,6 +26,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- TODO (8) Change MainActivity's launch mode to singleTop -->
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

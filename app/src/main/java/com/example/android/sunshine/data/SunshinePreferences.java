@@ -95,6 +95,7 @@ public class SunshinePreferences {
      * Returns true if the user has selected metric temperature display.
      *
      * @param context Context used to get the SharedPreferences
+     *
      * @return true If metric display should be used
      */
     public static boolean isMetric(Context context) {
