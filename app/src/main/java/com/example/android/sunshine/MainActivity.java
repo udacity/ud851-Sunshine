@@ -21,7 +21,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    // COMPLETED (1) Create a field to store the weather display TextView
     private TextView mWeatherTextView;
 
     @Override
@@ -29,14 +28,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forecast);
 
-        // COMPLETED (2) Use findViewById to get a reference to the weather display TextView
         /*
          * Using findViewById, we get a reference to our TextView from xml. This allows us to
          * do things like set the text of the TextView.
          */
         mWeatherTextView = (TextView) findViewById(R.id.tv_weather_data);
 
-        // COMPLETED (3) Create an array of Strings that contain fake weather data
+        // TODO (4) Delete the dummy weather data. You will be getting REAL data from the Internet in this lesson.
         /*
          * This String array contains dummy weather data. Later in the course, we're going to get
          * real weather data. For now, we want to get something on the screen as quickly as
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 "Mon, May 30 - Post Apocalypse - 15°C / 10°C",
         };
 
-        // COMPLETED (4) Append each String from the fake weather data array to the TextView
+        // TODO (3) Delete the for loop that populates the TextView with dummy data
         /*
          * Iterate through the array and append the Strings to the TextView. The reason why we add
          * the "\n\n\n" after the String is to give visual separation between each String in the
@@ -68,5 +66,13 @@ public class MainActivity extends AppCompatActivity {
         for (String dummyWeatherDay : dummyWeatherData) {
             mWeatherTextView.append(dummyWeatherDay + "\n\n\n");
         }
+
+        // TODO (9) Call loadWeatherData to perform the network request to get the weather
     }
+
+    // TODO (8) Create a method that will get the user's preferred location and execute your new AsyncTask and call it loadWeatherData
+
+    // TODO (5) Create a class that extends AsyncTask to perform network requests
+    // TODO (6) Override the doInBackground method to perform your network requests
+    // TODO (7) Override the onPostExecute method to display the results of the network request
 }
