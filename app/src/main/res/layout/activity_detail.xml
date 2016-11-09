@@ -15,6 +15,8 @@
      limitations under the License.
 -->
 
+<!-- TODO (3) Create the version of activity_detail that will be used in landscape mode -->
+
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - This layout displays the complete details of a given day's weather, including the date, a    -
   - weather icon and description, the high and low temperature, the humidity, pressure, and the  -

@@ -14,7 +14,6 @@
      limitations under the License.
 -->
 <!-- This selector works everywhere, but does not support ripple -->
-<!-- COMPLETED (1) Create a touch selector called touch_selector for the list item -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/activated"
           android:state_activated="true"
@@ -22,9 +21,10 @@
 
     <item android:drawable="@color/background_material_light"
           android:state_window_focused="false"/>
-
-    <!-- Even though these two point to the same resource, have two states so the drawable will
-    invalidate itself when coming out of pressed state. -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      - Even though these two point to the same resource, have two states so the drawable will   -
+      - invalidate itself when coming out of pressed state.                                      -
+      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <item android:drawable="@drawable/abc_list_selector_holo_light"
           android:state_enabled="false"
           android:state_focused="true"
@@ -45,7 +45,6 @@
     <item android:drawable="@drawable/abc_list_selector_holo_light"
           android:state_focused="true"/>
 
-    <!-- Default, "just hangin' out" state.  This is part of
-         ActionBarCompat -->
+    <!-- Default state with no interaction -->
     <item android:drawable="@color/background_material_light"/>
 </selector>
