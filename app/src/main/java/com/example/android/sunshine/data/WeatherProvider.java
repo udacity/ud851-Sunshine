@@ -125,7 +125,6 @@ public class WeatherProvider extends ContentProvider {
         return true;
     }
 
-//  COMPLETED (1) Implement the bulkInsert method
     /**
      * Handles requests to insert a set of new rows. In Sunshine, we are only going to be
      * inserting multiple rows of data at a time from a weather forecast. There is no use case
@@ -145,7 +144,6 @@ public class WeatherProvider extends ContentProvider {
 
         switch (sUriMatcher.match(uri)) {
 
-//          COMPLETED (2) Only perform our implementation of bulkInsert if the URI matches the CODE_WEATHER code
             case CODE_WEATHER:
                 db.beginTransaction();
                 int rowsInserted = 0;
@@ -171,10 +169,8 @@ public class WeatherProvider extends ContentProvider {
                     getContext().getContentResolver().notifyChange(uri, null);
                 }
 
-//              COMPLETED (3) Return the number of rows inserted from our implementation of bulkInsert
                 return rowsInserted;
 
-//          COMPLETED (4) If the URI does match match CODE_WEATHER, return the super implementation of bulkInsert
             default:
                 return super.bulkInsert(uri, values);
         }
@@ -297,6 +293,7 @@ public class WeatherProvider extends ContentProvider {
         return cursor;
     }
 
+//  TODO (1) Implement the delete method of the ContentProvider
     /**
      * Deletes data at a given URI with optional arguments for more fine tuned deletions.
      *
@@ -308,6 +305,10 @@ public class WeatherProvider extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
         throw new RuntimeException("Student, you need to implement the delete method!");
+
+//          TODO (2) Only implement the functionality, given the proper URI, to delete ALL rows in the weather table
+
+//      TODO (3) Return the number of rows deleted
     }
 
     /**

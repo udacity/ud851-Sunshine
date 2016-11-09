@@ -34,6 +34,7 @@ import org.junit.runner.RunWith;
 import static com.example.android.sunshine.data.TestUtilities.BULK_INSERT_RECORDS_TO_INSERT;
 import static com.example.android.sunshine.data.TestUtilities.createBulkInsertTestWeatherValues;
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
@@ -323,6 +324,103 @@ public class TestWeatherProvider {
 
         /* Always close the Cursor! */
         cursor.close();
+    }
+
+    /**
+     * This test deletes all records from the weather table using the ContentProvider. It also
+     * verifies that registered ContentObservers receive onChange callbacks when data is deleted.
+     * <p>
+     * It finally queries the ContentProvider to make sure that the table has been successfully
+     * cleared.
+     * <p>
+     * NOTE: This does not delete the table itself. It just deletes the rows of data contained
+     * within the table.
+     * <p>
+     * Potential causes for failure:
+     * <p>
+     *   1) Within {@link WeatherProvider#delete(Uri, String, String[])}, you didn't call
+     *    getContext().getContentResolver().notifyChange(uri, null) after performing a deletion.
+     * <p>
+     *   2) The cursor returned from the query was null
+     * <p>
+     *   3) After the attempted deletion, the ContentProvider still provided weather data
+     */
+    @Test
+    public void testDeleteAllRecordsFromProvider() {
+
+        /*
+         * Ensure there are records to delete from the database. Due to our setUp method, the
+         * database will not have any records in it prior to this method being run.
+         */
+        testBulkInsert();
+
+        /*
+         * TestContentObserver allows us to test weather or not notifyChange was called
+         * appropriately. We will use that here to make sure that notifyChange is called when a
+         * deletion occurs.
+         */
+        TestUtilities.TestContentObserver weatherObserver = TestUtilities.getTestContentObserver();
+
+        /*
+         * A ContentResolver provides us access to the content model. We can use it to perform
+         * deletions and queries at our CONTENT_URI
+         */
+        ContentResolver contentResolver = mContext.getContentResolver();
+
+        /* Register a content observer to be notified of changes to data at a given URI (weather) */
+        contentResolver.registerContentObserver(
+                /* URI that we would like to observe changes to */
+                WeatherContract.WeatherEntry.CONTENT_URI,
+                /* Whether or not to notify us if descendants of this URI change */
+                true,
+                /* The observer to register (that will receive notifyChange callbacks) */
+                weatherObserver);
+
+        /* Delete all of the rows of data from the weather table */
+        contentResolver.delete(
+                WeatherContract.WeatherEntry.CONTENT_URI,
+                /* Columns; leaving this null returns every column in the table */
+                null,
+                /* Optional specification for columns in the "where" clause above */
+                null);
+
+        /* Perform a query of the data that we've just deleted. This should be empty. */
+        Cursor shouldBeEmptyCursor = contentResolver.query(
+                WeatherContract.WeatherEntry.CONTENT_URI,
+                /* Columns; leaving this null returns every column in the table */
+                null,
+                /* Optional specification for columns in the "where" clause above */
+                null,
+                /* Values for "where" clause */
+                null,
+                /* Sort order to return in Cursor */
+                null);
+
+        /*
+         * If this fails, it's likely you didn't call notifyChange in your delete method from
+         * your ContentProvider.
+         */
+        weatherObserver.waitForNotificationOrFail();
+
+        /*
+         * waitForNotificationOrFail is synchronous, so after that call, we are done observing
+         * changes to content and should therefore unregister this observer.
+         */
+        contentResolver.unregisterContentObserver(weatherObserver);
+
+        /* In some cases, the cursor can be null. That's actually a failure case here. */
+        String cursorWasNull = "Cursor was null.";
+        assertNotNull(cursorWasNull, shouldBeEmptyCursor);
+
+        /* If the count of the cursor is not zero, all records weren't deleted */
+        String allRecordsWereNotDeleted =
+                "Error: All records were not deleted from weather table during delete";
+        assertEquals(allRecordsWereNotDeleted,
+                0,
+                shouldBeEmptyCursor.getCount());
+
+        /* Always close your cursor */
+        shouldBeEmptyCursor.close();
     }
 
     /**
