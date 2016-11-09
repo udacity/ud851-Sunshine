@@ -39,7 +39,6 @@
             app:layout_constraintGuide_percent="0.5"/>
 
         <!-- Humidity label -->
-        <!-- COMPLETED (6) Replace the appropriate attributes with the DetailLabel style -->
         <TextView
             android:id="@+id/humidity_label"
             style="@style/DetailLabel"
@@ -50,7 +49,6 @@
             app:layout_constraintVertical_bias="0.33"/>
 
         <!-- Humidity measurement -->
-        <!-- COMPLETED (7) Replace the appropriate attributes with the ExtraWeatherMeasurement style -->
         <TextView
             android:id="@+id/humidity"
             style="@style/ExtraWeatherMeasurement"
@@ -59,7 +57,6 @@
             tools:text="38%"/>
 
         <!-- Pressure label -->
-        <!-- COMPLETED (8) Replace the appropriate attributes with the DetailLabel style -->
         <TextView
             android:id="@+id/pressure_label"
             style="@style/DetailLabel"
@@ -69,7 +66,6 @@
             app:layout_constraintTop_toTopOf="@+id/extra_details"/>
 
         <!-- Pressure measurement -->
-        <!-- COMPLETED (9) Replace the appropriate attributes with the ExtraWeatherMeasurement style -->
         <TextView
             android:id="@+id/pressure"
             style="@style/ExtraWeatherMeasurement"
@@ -78,7 +74,6 @@
             tools:text="995 hPa"/>
 
         <!-- Wind label -->
-        <!-- COMPLETED (10) Replace the appropriate attributes with the DetailLabel style -->
         <TextView
             android:id="@+id/wind_label"
             style="@style/DetailLabel"
@@ -89,7 +84,6 @@
             app:layout_constraintVertical_bias="0.65999997"/>
 
         <!-- Wind measurement -->
-        <!-- COMPLETED (11) Replace the appropriate attributes with the ExtraWeatherMeasurement style -->
         <TextView
             android:id="@+id/wind_measurement"
             style="@style/ExtraWeatherMeasurement"
