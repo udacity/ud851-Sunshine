@@ -26,84 +26,39 @@
   - Note that this is the PORTRAIT version of the layout.                                        -
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<!-- TODO (31) Delete the old layout completely -->
+<!-- COMPLETED (31) Delete the old layout completely -->
+<!-- COMPLETED (35) Surround the entire layout with <layout/> tags for data binding -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-<!-- TODO (35) Surround the entire layout with <layout/> tags for data binding -->
+    <!-- COMPLETED (34) Create a LinearLayout to contain two included layouts that share equal space -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-<!-- TODO (34) Create a LinearLayout to contain two included layouts that share equal space -->
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          - To efficiently re-use complete layouts, you can use the <include/> tags to embed     -
+          - another complete layout inside the current layout. In Sunshine, this allows us to    -
+          - conveniently create layouts for both the portrait and landscape layouts for the      -
+          - DetailActivity. If we hadn't have used <include/> tags, we would have duplicated     -
+          - layout code all over the place, and any changes we wanted to make, we'd have to make -
+          - twice.                                                                               -
+          - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <!-- COMPLETED (32) Include the primary_weather_info layout -->
+        <include
+            android:id="@+id/primary_info"
+            layout="@layout/primary_weather_info"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
-<!-- TODO (25) Create a layout called primary_weather_info.xml -->
-<!-- TODO (26) Surround the entire layout with <layout/> tags for data binding -->
-<!-- TODO (27) Using ConstraintLayout, create the primary weather info layout -->
-<!-- TODO (32) Include the primary_weather_info layout -->
+        <!-- COMPLETED (33) Include the extra_weather_details layout -->
+        <include
+            android:id="@+id/extra_details"
+            layout="@layout/extra_weather_details"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
-<!-- TODO (28) Create a layout called extra_weather_details.xml -->
-<!-- TODO (29) Surround the entire layout with <layout/> tags for data binding -->
-<!-- TODO (30) Using ConstraintLayout, create the extra weather details layout -->
-<!-- TODO (33) Include the extra_weather_details layout -->
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="8dp">
-
-
-    <TextView
-        android:id="@+id/date"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Saturday, September 24"/>
-
-    <!-- Text that describes weather condition -->
-    <TextView
-        android:id="@+id/weather_description"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Rainy"/>
-
-    <!-- High temperature for today -->
-    <TextView
-        android:id="@+id/high_temperature"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="19\u00b0"/>
-
-    <!-- Low temperature for today -->
-    <TextView
-        android:id="@+id/low_temperature"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="10\u00b0"/>
-
-    <!-- Humidity  -->
-    <TextView
-        android:id="@+id/humidity"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="38%"/>
-
-    <!-- Pressure  -->
-    <TextView
-        android:id="@+id/pressure"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="995 hPa"/>
-
-    <!-- Wind  -->
-    <TextView
-        android:id="@+id/wind"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="4km/h NW"/>
-
-</LinearLayout>
+    </LinearLayout>
+</layout>
