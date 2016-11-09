@@ -25,10 +25,7 @@
   - depending on whether or not it is being touched. These can be set programmatically in Java,  -
   - but again, we wanted to avoid making things too complicated.                                 -
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!-- COMPLETED (10) Color the TextViews for weather data appropriately -->
-<!-- COMPLETED (11) Color the background for today's weather data appropriately -->
-<!-- COMPLETED (12) Replace dimension values with @dimen resources -->
-<!-- COMPLETED (13) Use sans-serif-light font family for the temperature TextViews -->
+
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
