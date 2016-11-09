@@ -15,7 +15,7 @@
      limitations under the License.
 -->
 <!-- This layout defines the main screen and will display the list of weather or an error -->
-<!-- TODO (3) Replace dimension values with @dimen resources -->
+<!-- COMPLETED (3) Replace dimension values with @dimen resources -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent">

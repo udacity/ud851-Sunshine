@@ -22,9 +22,9 @@
   - In order to use Android's data binding capabilities, (to avoid having to type findViewById   -
   - over and over again) we wrap this layout in a <layout></layout> tag.                         -
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!-- TODO (14) Color the description, high temperature, and low temperature appropriately -->
-<!-- TODO (15) Replace dimension values with @dimen resources -->
-<!-- TODO (16) Use sans-serif-light font family for the temperature TextViews -->
+<!-- COMPLETED (14) Color the description, high temperature, and low temperature appropriately -->
+<!-- COMPLETED (15) Replace dimension values with @dimen resources -->
+<!-- COMPLETED (16) Use sans-serif-light font family for the temperature TextViews -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
@@ -84,6 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textColor="@color/secondary_text"
             android:textSize="20sp"
             app:layout_constraintHorizontal_bias="0.52"
             app:layout_constraintLeft_toLeftOf="@+id/weather_icon"
@@ -104,6 +105,8 @@
             android:id="@+id/high_temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/primary_text"
             android:textSize="72sp"
             app:layout_constraintBottom_toBottomOf="@+id/weather_icon"
             app:layout_constraintHorizontal_bias="0.45"
@@ -125,6 +128,8 @@
             android:id="@+id/low_temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/secondary_text"
             android:textSize="36sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/weather_description"
             app:layout_constraintLeft_toLeftOf="@+id/high_temperature"
