@@ -29,10 +29,11 @@
         android:theme="@style/AppTheme">
 
         <!--The manifest entry for our MainActivity. Each Activity requires a manifest entry-->
-        <!-- TODO (5) Use AppTheme.Forecast as the MainActivity's new theme -->
+        <!-- COMPLETED (5) Use AppTheme.Forecast as the MainActivity's new theme -->
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
+            android:theme="@style/AppTheme.Forecast"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
