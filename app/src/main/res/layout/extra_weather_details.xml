@@ -14,9 +14,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!-- COMPLETED (4) Color the background and label text color appropriately -->
-<!-- COMPLETED (5) Replace dimension values with @dimen resources -->
-<!-- COMPLETED (6) Use sans-serif font family for label TextViews -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
@@ -42,6 +39,7 @@
             app:layout_constraintGuide_percent="0.5"/>
 
         <!-- Humidity label -->
+        <!-- TODO (6) Replace the appropriate attributes with the DetailLabel style -->
         <TextView
             android:id="@+id/humidity_label"
             android:layout_width="wrap_content"
@@ -55,6 +53,7 @@
             app:layout_constraintVertical_bias="0.33"/>
 
         <!-- Humidity measurement -->
+        <!-- TODO (7) Replace the appropriate attributes with the ExtraWeatherMeasurement style -->
         <TextView
             android:id="@+id/humidity"
             android:layout_width="wrap_content"
@@ -65,6 +64,7 @@
             tools:text="38%"/>
 
         <!-- Pressure label -->
+        <!-- TODO (8) Replace the appropriate attributes with the DetailLabel style -->
         <TextView
             android:id="@+id/pressure_label"
             android:layout_width="wrap_content"
@@ -77,6 +77,7 @@
             app:layout_constraintTop_toTopOf="@+id/extra_details"/>
 
         <!-- Pressure measurement -->
+        <!-- TODO (9) Replace the appropriate attributes with the ExtraWeatherMeasurement style -->
         <TextView
             android:id="@+id/pressure"
             android:layout_width="wrap_content"
@@ -87,6 +88,7 @@
             tools:text="995 hPa"/>
 
         <!-- Wind label -->
+        <!-- TODO (10) Replace the appropriate attributes with the DetailLabel style -->
         <TextView
             android:id="@+id/wind_label"
             android:layout_width="wrap_content"
@@ -100,6 +102,7 @@
             app:layout_constraintVertical_bias="0.65999997"/>
 
         <!-- Wind measurement -->
+        <!-- TODO (11) Replace the appropriate attributes with the ExtraWeatherMeasurement style -->
         <TextView
             android:id="@+id/wind_measurement"
             android:layout_width="wrap_content"

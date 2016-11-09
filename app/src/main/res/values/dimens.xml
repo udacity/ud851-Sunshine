@@ -15,7 +15,6 @@
      limitations under the License.
 -->
 
-<!-- COMPLETED (2) Add dimens.xml, create and use dimensions for Sunshine's layouts -->
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="forecast_detail_horizontal_padding">32dp</dimen>

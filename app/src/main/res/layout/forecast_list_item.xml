@@ -15,9 +15,6 @@
      limitations under the License.
 -->
 
-<!-- COMPLETED (7) Color the primary and secondary text appropriately -->
-<!-- COMPLETED (8) Replace dimension values with @dimen resources -->
-<!-- COMPLETED (9) Use sans-serif-light font family for the temperature TextViews -->
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
