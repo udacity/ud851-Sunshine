@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="forecast_detail_horizontal_padding">32dp</dimen>
+    <dimen name="forecast_detail_vertical_padding">16dp</dimen>
+
+    <!-- Icon Sizes -->
+    <dimen name="today_icon">96dp</dimen>
+    <dimen name="list_icon">40dp</dimen>
+
+    <!-- Text Sizes - We are using DP here rather than SP because these are already large
+         font sizes, and going larger will cause lots of view problems.  This is only for
+         the large forecast numbers in the forecast list -->
+    <dimen name="forecast_text_size">28dp</dimen>
+
+    <dimen name="forecast_temperature_space">4dp</dimen>
+
+    <!-- We will eventually use this to allow us to add additional padding for different screen
+         sizes-->
+    <dimen name="today_forecast_list_item_vertical_padding">16dp</dimen>
+    <dimen name="list_item_icon_margin_right">24dp</dimen>
+    <dimen name="list_item_icon_margin_end">@dimen/list_item_icon_margin_right</dimen>
+    <dimen name="list_item_padding_horizontal">16dp</dimen>
+    <dimen name="loading_indicator_size">42dp</dimen>
+    <dimen name="list_item_high_temperature_margin">12dp</dimen>
+    <dimen name="list_item_padding_vertical">12dp</dimen>
+    <dimen name="list_item_low_temperature_text_view_size">48dp</dimen>
+    <dimen name="list_item_date_left_margin">16dp</dimen>
+    <dimen name="list_item_date_start_margin">@dimen/list_item_date_left_margin</dimen>
+
+</resources>

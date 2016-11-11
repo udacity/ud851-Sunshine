@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- COMPLETED (1) Create the version of dimens that will be used in landscape mode -->
+<resources>
+    <dimen name="forecast_detail_horizontal_padding">16dp</dimen>
+    <dimen name="forecast_detail_vertical_padding">44dp</dimen>
+</resources>

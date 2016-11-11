@@ -1,0 +1,4 @@
+Going to keep a log of things we've changed in time order. Not sure if this will work with rebasing, but figured it might help keep things organized.
+
+* Updated compileSdkVersion, buildToolsVersion, targetSdkVersion, appcompat version, and support annotations version
+
