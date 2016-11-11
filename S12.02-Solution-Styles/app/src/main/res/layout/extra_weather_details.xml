@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/extra_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/detail_accent_pane_background"
+        android:paddingBottom="@dimen/forecast_detail_vertical_padding"
+        android:paddingEnd="@dimen/forecast_detail_horizontal_padding"
+        android:paddingLeft="@dimen/forecast_detail_horizontal_padding"
+        android:paddingRight="@dimen/forecast_detail_horizontal_padding"
+        android:paddingStart="@dimen/forecast_detail_horizontal_padding"
+        android:paddingTop="@dimen/forecast_detail_vertical_padding">
+
+        <!-- This guideline divides the layout into a left and right half and is used for alignment -->
+        <android.support.constraint.Guideline
+            android:id="@+id/horizontal_middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"/>
+
+        <!-- Humidity label -->
+        <!-- COMPLETED (6) Replace the appropriate attributes with the DetailLabel style -->
+        <TextView
+            android:id="@+id/humidity_label"
+            style="@style/DetailLabel"
+            android:text="@string/humidity_label"
+            app:layout_constraintBottom_toTopOf="@+id/pressure_label"
+            app:layout_constraintLeft_toLeftOf="@+id/extra_details"
+            app:layout_constraintTop_toTopOf="@+id/extra_details"
+            app:layout_constraintVertical_bias="0.33"/>
+
+        <!-- Humidity measurement -->
+        <!-- COMPLETED (7) Replace the appropriate attributes with the ExtraWeatherMeasurement style -->
+        <TextView
+            android:id="@+id/humidity"
+            style="@style/ExtraWeatherMeasurement"
+            app:layout_constraintBottom_toBottomOf="@+id/humidity_label"
+            app:layout_constraintLeft_toLeftOf="@+id/horizontal_middle"
+            tools:text="38%"/>
+
+        <!-- Pressure label -->
+        <!-- COMPLETED (8) Replace the appropriate attributes with the DetailLabel style -->
+        <TextView
+            android:id="@+id/pressure_label"
+            style="@style/DetailLabel"
+            android:text="@string/pressure_label"
+            app:layout_constraintBottom_toBottomOf="@+id/extra_details"
+            app:layout_constraintLeft_toLeftOf="@+id/extra_details"
+            app:layout_constraintTop_toTopOf="@+id/extra_details"/>
+
+        <!-- Pressure measurement -->
+        <!-- COMPLETED (9) Replace the appropriate attributes with the ExtraWeatherMeasurement style -->
+        <TextView
+            android:id="@+id/pressure"
+            style="@style/ExtraWeatherMeasurement"
+            app:layout_constraintBottom_toBottomOf="@+id/pressure_label"
+            app:layout_constraintLeft_toLeftOf="@+id/horizontal_middle"
+            tools:text="995 hPa"/>
+
+        <!-- Wind label -->
+        <!-- COMPLETED (10) Replace the appropriate attributes with the DetailLabel style -->
+        <TextView
+            android:id="@+id/wind_label"
+            style="@style/DetailLabel"
+            android:text="@string/wind_label"
+            app:layout_constraintBottom_toBottomOf="@+id/extra_details"
+            app:layout_constraintLeft_toLeftOf="@+id/extra_details"
+            app:layout_constraintTop_toBottomOf="@+id/pressure_label"
+            app:layout_constraintVertical_bias="0.65999997"/>
+
+        <!-- Wind measurement -->
+        <!-- COMPLETED (11) Replace the appropriate attributes with the ExtraWeatherMeasurement style -->
+        <TextView
+            android:id="@+id/wind_measurement"
+            style="@style/ExtraWeatherMeasurement"
+            app:layout_constraintBottom_toBottomOf="@+id/wind_label"
+            app:layout_constraintLeft_toLeftOf="@+id/horizontal_middle"
+            tools:text="4km/h NW"/>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
