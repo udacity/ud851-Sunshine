@@ -15,9 +15,6 @@
      limitations under the License.
 -->
 
-<!-- TODO (1) Create the version of dimens that will be used in landscape mode -->
-<!-- TODO (2) Create the version of dimens that will be used when the smallest width of the screen is 600dp -->
-
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="forecast_detail_horizontal_padding">32dp</dimen>
