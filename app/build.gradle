@@ -18,7 +18,6 @@ android {
         }
     }
 
-//  COMPLETED (1) Enable databinding
     dataBinding.enabled = true
 }
 

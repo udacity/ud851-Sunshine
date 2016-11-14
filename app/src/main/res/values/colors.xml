@@ -15,7 +15,10 @@
      limitations under the License.
 -->
 <resources>
+    <!-- TODO (1) Add each of the colors required by Sunshine -->
+
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
 </resources>
