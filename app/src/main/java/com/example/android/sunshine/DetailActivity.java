@@ -207,6 +207,7 @@ public class DetailActivity extends AppCompatActivity implements
 
     /**
      * Runs on the main thread when a load is complete. If initLoader is called (we call it from
+     * onCreate in DetailActivity) and the LoaderManager already has completed a previous load
      * for this Loader, onLoadFinished will be called immediately. Within onLoadFinished, we bind
      * the data to our views so the user can see the details of the weather on the date they
      * selected from the forecast.

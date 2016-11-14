@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- COMPLETED (2) Create the version of dimens that will be used when the smallest width of the screen is 600dp -->
+<resources>
+    <dimen name="forecast_detail_vertical_padding">24dp</dimen>
+    <dimen name="today_forecast_list_item_vertical_padding">24dp</dimen>
+    <dimen name="list_item_icon_margin_right">24dp</dimen>
+    <dimen name="list_item_icon_margin_end">@dimen/list_item_icon_margin_right</dimen>
+    <dimen name="list_item_padding_horizontal">24dp</dimen>
+</resources>
