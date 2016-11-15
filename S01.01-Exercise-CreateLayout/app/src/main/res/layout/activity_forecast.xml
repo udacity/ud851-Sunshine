@@ -15,22 +15,21 @@
      limitations under the License.
 -->
 <!--TODO (1) Change the ConstraintLayout to a FrameLayout-->
-<!--TODO (8) Remove the line that declares the id, we don't need it-->
+<!--TODO (7) Remove the line that declares the id, we don't need it-->
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--TODO (9) Wrap the TextView in a ScrollView-->
-    <!--TODO (10) Set the ScrollView width to match_parent and the height to wrap_content-->
+    <!--TODO (8) Wrap the TextView in a ScrollView-->
+    <!--TODO (9) Set the ScrollView width to match_parent and the height to wrap_content-->
 
     <!--TODO (2) Change the android:id attribute to tv_weather_data-->
-    <!--TODO (3) Set the TextView's height and width to wrap_content-->
-    <!--TODO (4) Give the TextView 16dp of padding-->
-    <!--TODO (5) Set the text size to 20sp-->
-    <!--TODO (6) Remove all attributes with the word constraint in them-->
-    <!--TODO (7) Remove the default text from the TextView-->
+    <!--TODO (3) Give the TextView 16dp of padding-->
+    <!--TODO (4) Set the text size to 20sp-->
+    <!--TODO (5) Remove all attributes with the word constraint in them-->
+    <!--TODO (6) Remove the default text from the TextView-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
