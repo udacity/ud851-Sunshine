@@ -23,7 +23,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.0.0'
 
-    // COMPLETED (11) Remove this dependency as we won't be needing it for the project until later
+    // COMPLETED (10) Remove this dependency as we won't be needing it for the project until later
 
     // Instrumentation dependencies use androidTestCompile
     // (as opposed to testCompile for local unit tests run in the JVM)
