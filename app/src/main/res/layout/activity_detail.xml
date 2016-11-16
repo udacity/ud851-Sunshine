@@ -15,7 +15,18 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - This layout displays the complete details of a given day's weather, including the date, a    -
+  - weather icon and description, the high and low temperature, the humidity, pressure, and the  -
+  - wind speed and direction.                                                                    -
+  -                                                                                              -
+  - In order to use Android's data binding capabilities, (to avoid having to type findViewById   -
+  - over and over again) we wrap this layout in a <layout></layout> tag.                         -
+  -                                                                                              -
+  - Note that this is the PORTRAIT version of the layout.                                        -
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
