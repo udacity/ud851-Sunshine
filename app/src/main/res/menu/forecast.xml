@@ -24,7 +24,6 @@
         android:orderInCategory="1"
         android:title="@string/action_refresh"
         app:showAsAction="ifRoom"/>
-    <!--COMPLETED (4) Add a Settings option to the main menu-->
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
