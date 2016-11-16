@@ -14,8 +14,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!-- COMPLETED (2) Remove the old layout -->
-<!-- COMPLETED (3) Use ConstraintLayout to create the new list item layout -->
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
