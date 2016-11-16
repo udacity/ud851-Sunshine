@@ -14,22 +14,23 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+<!-- TODO (2) Remove the old layout -->
+<!-- TODO (3) Use ConstraintLayout to create the new list item layout -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <!--This TextView holds the weather data for one particular day in the forecast-->
+    <!-- This TextView holds the weather data for one particular day in the forecast -->
     <TextView
         android:id="@+id/tv_weather_data"
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        tools:text="Saturday, October 1 - Sunny - 78° / 63°"/>
+        android:padding="16dp"/>
 
-    <!--This View serves as a visual divider between list items-->
+    <!-- This View serves as a visual divider between list items -->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -38,4 +39,3 @@
         android:background="#dadada"/>
 
 </LinearLayout>
-

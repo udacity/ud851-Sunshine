@@ -32,8 +32,6 @@
         android:key="@string/pref_units_key"
         android:title="@string/pref_units_label" />
 
-    <!-- COMPLETED (11) Add a preference for notifications -->
-    <!-- COMPLETED (12) Set the default of whether or not to show preferences using bools.xml -->
     <CheckBoxPreference
         android:defaultValue="@bool/show_notifications_by_default"
         android:key="@string/pref_enable_notifications_key"

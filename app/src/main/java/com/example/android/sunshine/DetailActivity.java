@@ -95,6 +95,14 @@ public class DetailActivity extends AppCompatActivity implements
     private TextView mWindView;
     private TextView mPressureView;
 
+    /*
+     * This field is used for data binding. Normally, we would have to call findViewById many
+     * times to get references to the Views in this Activity. With data binding however, we only
+     * need to call DataBindingUtil.setContentView and pass in a Context and a layout, as we do
+     * in onCreate of this class. Then, we can access all of the Views in our layout
+     * programmatically without cluttering up the code with findViewById.
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -245,6 +253,7 @@ public class DetailActivity extends AppCompatActivity implements
             return;
         }
 
+
         /****************
          * Weather Date *
          ****************/
@@ -262,6 +271,7 @@ public class DetailActivity extends AppCompatActivity implements
 
         mDateView.setText(dateText);
 
+
         /***********************
          * Weather Description *
          ***********************/
@@ -270,8 +280,10 @@ public class DetailActivity extends AppCompatActivity implements
         /* Use the weatherId to obtain the proper description */
         String description = SunshineWeatherUtils.getStringForWeatherCondition(this, weatherId);
 
-        /* Set the text */
+
+        /* Set the text to display the description*/
         mDescriptionView.setText(description);
+
 
         /**************************
          * High (max) temperature *
@@ -285,8 +297,9 @@ public class DetailActivity extends AppCompatActivity implements
          */
         String highString = SunshineWeatherUtils.formatTemperature(this, highInCelsius);
 
-        /* Set the text */
+        /* Set the text to display the high temperature */
         mHighTemperatureView.setText(highString);
+
 
         /*************************
          * Low (min) temperature *
@@ -300,8 +313,9 @@ public class DetailActivity extends AppCompatActivity implements
          */
         String lowString = SunshineWeatherUtils.formatTemperature(this, lowInCelsius);
 
-        /* Set the text */
+        /* Set the text to display the low temperature */
         mLowTemperatureView.setText(lowString);
+
 
         /************
          * Humidity *
@@ -310,8 +324,9 @@ public class DetailActivity extends AppCompatActivity implements
         float humidity = data.getFloat(INDEX_WEATHER_HUMIDITY);
         String humidityString = getString(R.string.format_humidity, humidity);
 
-        /* Set the text */
+        /* Set the text to display the humidity */
         mHumidityView.setText(humidityString);
+
 
         /****************************
          * Wind speed and direction *
@@ -321,8 +336,9 @@ public class DetailActivity extends AppCompatActivity implements
         float windDirection = data.getFloat(INDEX_WEATHER_DEGREES);
         String windString = SunshineWeatherUtils.getFormattedWind(this, windSpeed, windDirection);
 
-        /* Set the text */
+        /* Set the text to display wind information */
         mWindView.setText(windString);
+
 
         /************
          * Pressure *
@@ -339,8 +355,9 @@ public class DetailActivity extends AppCompatActivity implements
          */
         String pressureString = getString(R.string.format_pressure, pressure);
 
-        /* Set the text */
+        /* Set the text to display the pressure information */
         mPressureView.setText(pressureString);
+
 
         /* Store the forecast summary String in our forecast summary field to share later */
         mForecastSummary = String.format("%s - %s - %s/%s",
