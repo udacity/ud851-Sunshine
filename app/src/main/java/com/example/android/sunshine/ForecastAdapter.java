@@ -22,46 +22,40 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-// COMPLETED (15) Add a class called ForecastAdapter
-// COMPLETED (22) Extend RecyclerView.Adapter<ForecastAdapter.ForecastAdapterViewHolder>
 /**
  * {@link ForecastAdapter} exposes a list of weather forecasts to a
  * {@link android.support.v7.widget.RecyclerView}
  */
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapterViewHolder> {
 
-    // COMPLETED (23) Create a private string array called mWeatherData
     private String[] mWeatherData;
 
-    // COMPLETED (47) Create the default constructor (we will pass in parameters in a later lesson)
+    // TODO (3) Create a final private ForecastAdapterOnClickHandler called mClickHandler
+
+    // TODO (1) Add an interface called ForecastAdapterOnClickHandler
+    // TODO (2) Within that interface, define a void method that access a String as a parameter
+
+    // TODO (4) Add a ForecastAdapterOnClickHandler as a parameter to the constructor and store it in mClickHandler
     public ForecastAdapter() {
 
     }
 
-    // COMPLETED (16) Create a class within ForecastAdapter called ForecastAdapterViewHolder
-    // COMPLETED (17) Extend RecyclerView.ViewHolder
+    // TODO (5) Implement OnClickListener in the ForecastAdapterViewHolder class
     /**
      * Cache of the children views for a forecast list item.
      */
     public class ForecastAdapterViewHolder extends RecyclerView.ViewHolder {
-
-        // Within ForecastAdapterViewHolder ///////////////////////////////////////////////////////
-        // COMPLETED (18) Create a public final TextView variable called mWeatherTextView
         public final TextView mWeatherTextView;
 
-        // COMPLETED (19) Create a constructor for this class that accepts a View as a parameter
-        // COMPLETED (20) Call super(view)
-        // COMPLETED (21) Using view.findViewById, get a reference to this layout's TextView and save it to mWeatherTextView
         public ForecastAdapterViewHolder(View view) {
             super(view);
             mWeatherTextView = (TextView) view.findViewById(R.id.tv_weather_data);
+            // TODO (7) Call setOnClickListener on the view passed into the constructor (use 'this' as the OnClickListener)
         }
-        // Within ForecastAdapterViewHolder ///////////////////////////////////////////////////////
+
+        // TODO (6) Override onClick, passing the clicked day's data to mClickHandler via its onClick method
     }
 
-    // COMPLETED (24) Override onCreateViewHolder
-    // COMPLETED (25) Within onCreateViewHolder, inflate the list item xml into a view
-    // COMPLETED (26) Within onCreateViewHolder, return a new ForecastAdapterViewHolder with the above view passed in as a parameter
     /**
      * This gets called when each new ViewHolder is created. This happens when the RecyclerView
      * is laid out. Enough ViewHolders will be created to fill the screen and allow for scrolling.
@@ -84,8 +78,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         return new ForecastAdapterViewHolder(view);
     }
 
-    // COMPLETED (27) Override onBindViewHolder
-    // COMPLETED (28) Set the text of the TextView to the weather for this list item's position
     /**
      * OnBindViewHolder is called by the RecyclerView to display the data at the specified
      * position. In this method, we update the contents of the ViewHolder to display the weather
@@ -102,8 +94,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         forecastAdapterViewHolder.mWeatherTextView.setText(weatherForThisDay);
     }
 
-    // COMPLETED (29) Override getItemCount
-    // COMPLETED (30) Return 0 if mWeatherData is null, or the size of mWeatherData if it is not null
     /**
      * This method simply returns the number of items to display. It is used behind the scenes
      * to help layout our Views and for animations.
@@ -116,8 +106,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         return mWeatherData.length;
     }
 
-    // COMPLETED (31) Create a setWeatherData method that saves the weatherData to mWeatherData
-    // COMPLETED (32) After you save mWeatherData, call notifyDataSetChanged
     /**
      * This method is used to set the weather forecast on a ForecastAdapter if we've already
      * created one. This is handy when we get new data from the web but don't want to create a
