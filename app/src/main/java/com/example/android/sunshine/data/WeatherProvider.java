@@ -35,7 +35,6 @@ import android.support.annotation.NonNull;
  */
 public class WeatherProvider extends ContentProvider {
 
-//  COMPLETED (5) Create static constant integer values named CODE_WEATHER & CODE_WEATHER_WITH_DATE to identify the URIs this ContentProvider can handle
     /*
      * These constant will be used to match URIs with the data they are looking for. We will take
      * advantage of the UriMatcher class to make that matching MUCH easier than doing something
@@ -44,18 +43,14 @@ public class WeatherProvider extends ContentProvider {
     public static final int CODE_WEATHER = 100;
     public static final int CODE_WEATHER_WITH_DATE = 101;
 
-//  COMPLETED (8) Instantiate a static UriMatcher using the buildUriMatcher method
     /*
      * The URI Matcher used by this content provider. The leading "s" in this variable name
      * signifies that this UriMatcher is a static member variable of WeatherProvider and is a
      * common convention in Android programming.
      */
     private static final UriMatcher sUriMatcher = buildUriMatcher();
-
-//  COMPLETED (1) Declare, but don't instantiate a WeatherDbHelper object called mOpenHelper
     private WeatherDbHelper mOpenHelper;
 
-//  COMPLETED (7) Write a method called buildUriMatcher where you match URI's to their numeric ID
     /**
      * Creates the UriMatcher that will match each URI to the CODE_WEATHER and
      * CODE_WEATHER_WITH_DATE constants defined above.
@@ -101,7 +96,6 @@ public class WeatherProvider extends ContentProvider {
         return matcher;
     }
 
-//  COMPLETED (2) Override onCreate
     /**
      * In onCreate, we initialize our content provider on startup. This method is called for all
      * registered content providers on the application main thread at application launch time.
@@ -124,13 +118,11 @@ public class WeatherProvider extends ContentProvider {
          * lengthy operations will cause lag in your app. Since WeatherDbHelper's constructor is
          * very lightweight, we are safe to perform that initialization here.
          */
-//      COMPLETED (3) Within onCreate, instantiate our mOpenHelper
         mOpenHelper = new WeatherDbHelper(getContext());
-
-//      COMPLETED (4) Return true from onCreate to signify success performing setup
         return true;
     }
 
+//  TODO (1) Implement the bulkInsert method
     /**
      * Handles requests to insert a set of new rows. In Sunshine, we are only going to be
      * inserting multiple rows of data at a time from a weather forecast. There is no use case
@@ -146,10 +138,15 @@ public class WeatherProvider extends ContentProvider {
      */
     @Override
     public int bulkInsert(@NonNull Uri uri, @NonNull ContentValues[] values) {
-        throw new RuntimeException("Student, you need to implement the bulkInsert mehtod!");
+        throw new RuntimeException("Student, you need to implement the bulkInsert method!");
+
+//          TODO (2) Only perform our implementation of bulkInsert if the URI matches the CODE_WEATHER code
+
+//              TODO (3) Return the number of rows inserted from our implementation of bulkInsert
+
+//          TODO (4) If the URI does match match CODE_WEATHER, return the super implementation of bulkInsert
     }
 
-//  COMPLETED (9) Provide an implementation for the query method
     /**
      * Handles query requests from clients. We will use this method in Sunshine to query for all
      * of our weather data as well as to query for the weather on a particular day.
@@ -171,7 +168,6 @@ public class WeatherProvider extends ContentProvider {
 
         Cursor cursor;
 
-//      COMPLETED (10) Handle queries on both the weather and weather with date URI
         /*
          * Here's the switch statement that, given a URI, will determine what kind of request is
          * being made and query the database accordingly.
@@ -264,7 +260,6 @@ public class WeatherProvider extends ContentProvider {
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
 
-//      COMPLETED (11) Call setNotificationUri on the cursor and then return the cursor
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
         return cursor;
     }
