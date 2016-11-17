@@ -25,6 +25,23 @@
   -                                                                                              -
   - Note that this is the PORTRAIT version of the layout.                                        -
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<!-- TODO (31) Delete the old layout completely -->
+
+<!-- TODO (35) Surround the entire layout with <layout/> tags for data binding -->
+
+<!-- TODO (34) Create a LinearLayout to contain two included layouts that share equal space -->
+
+<!-- TODO (25) Create a layout called primary_weather_info.xml -->
+<!-- TODO (26) Surround the entire layout with <layout/> tags for data binding -->
+<!-- TODO (27) Using ConstraintLayout, create the primary weather info layout -->
+<!-- TODO (32) Include the primary_weather_info layout -->
+
+<!-- TODO (28) Create a layout called extra_weather_details.xml -->
+<!-- TODO (29) Surround the entire layout with <layout/> tags for data binding -->
+<!-- TODO (30) Using ConstraintLayout, create the extra weather details layout -->
+<!-- TODO (33) Include the extra_weather_details layout -->
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"

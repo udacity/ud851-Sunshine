@@ -16,6 +16,8 @@ android {
             minifyEnabled false
         }
     }
+
+    //  TODO (1) Enable databinding
 }
 
 dependencies {

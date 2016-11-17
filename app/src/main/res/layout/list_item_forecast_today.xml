@@ -14,7 +14,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!-- COMPLETED (1) Add a layout called list_item_forecast_today -->
+
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - This layout displays today's primary weather information, such as the date, an icon and      -
   - description, and the high and low temperature.                                               -
@@ -25,7 +25,6 @@
   - depending on whether or not it is being touched. These can be set programmatically in Java,  -
   - but again, we wanted to avoid making things too complicated.                                 -
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!-- COMPLETED (2) Using ConstraintLayout, implement the today list item layout -->
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
