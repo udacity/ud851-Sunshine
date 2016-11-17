@@ -14,9 +14,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <resources>
     <bool name="show_notifications_by_default">true</bool>
     <bool name="use_today_layout">false</bool>
-    <!-- COMPLETED (3) Add a bool called use_today_layout and set it to false -->
 </resources>

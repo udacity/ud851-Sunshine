@@ -17,8 +17,8 @@ android {
             minifyEnabled false
         }
     }
-    productFlavors {
-    }
+
+//  TODO (1) Enable databinding
 }
 
 dependencies {
