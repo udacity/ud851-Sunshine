@@ -34,6 +34,7 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 
+import static com.example.android.sunshine.data.TestUtilities.getConstantNameByStringValue;
 import static com.example.android.sunshine.data.TestUtilities.getStaticIntegerField;
 import static com.example.android.sunshine.data.TestUtilities.getStaticStringField;
 import static com.example.android.sunshine.data.TestUtilities.studentReadableClassNotFound;
@@ -166,14 +167,6 @@ public class TestSunshineDatabase {
             REFLECTED_DATABASE_VERSION = getStaticIntegerField(
                     weatherDbHelperClass, databaseVersionVariableName);
 
-            int expectedDatabaseVersion = 1;
-            String databaseVersionShouldBe1 = "Database version should be "
-                    + expectedDatabaseVersion + " but isn't.";
-
-            assertEquals(databaseVersionShouldBe1,
-                    expectedDatabaseVersion,
-                    REFLECTED_DATABASE_VERSION);
-
             Constructor weatherDbHelperCtor = weatherDbHelperClass.getConstructor(Context.class);
 
             dbHelper = (SQLiteOpenHelper) weatherDbHelperCtor.newInstance(context);
@@ -198,7 +191,20 @@ public class TestSunshineDatabase {
         }
     }
 
+    @Test
+    public void testDatabaseVersionWasIncremented() {
+        int expectedDatabaseVersion = 2;
+        String databaseVersionShouldBe1 = "Database version should be "
+                + expectedDatabaseVersion + " but isn't."
+                + "\n Database version: ";
+
+        assertEquals(databaseVersionShouldBe1,
+                expectedDatabaseVersion,
+                REFLECTED_DATABASE_VERSION);
+    }
+
     /**
+<<<<<<< HEAD
      * Tests to ensure that inserts into your database results in automatically incrementing row
      * IDs and that row IDs are not reused.
      * <p>
@@ -216,6 +222,69 @@ public class TestSunshineDatabase {
      * database again. If AUTOINCREMENT isn't set up properly in the WeatherDbHelper's table
      * create statement, then the _ID of the first insert will be reused. However, if AUTOINCREMENT
      * is setup properly, that older ID will NOT be reused, and the test will pass.
+=======
+     * Tests the columns with null values cannot be inserted into the database.
+     */
+    @Test
+    public void testNullColumnConstraints() {
+        /* Use a WeatherDbHelper to get access to a writable database */
+
+        /* We need a cursor from a weather table query to access the column names */
+        Cursor weatherTableCursor = database.query(
+                REFLECTED_TABLE_NAME,
+                /* We don't care about specifications, we just want the column names */
+                null, null, null, null, null, null);
+
+        /* Store the column names and close the cursor */
+        String[] weatherTableColumnNames = weatherTableCursor.getColumnNames();
+        weatherTableCursor.close();
+
+        /* Obtain weather values from TestUtilities and make a copy to avoid altering singleton */
+        ContentValues testValues = TestUtilities.createTestWeatherContentValues();
+        /* Create a copy of the testValues to save as a reference point to restore values */
+        ContentValues testValuesReferenceCopy = new ContentValues(testValues);
+
+        for (String columnName : weatherTableColumnNames) {
+
+            /* We don't need to verify the _ID column value is not null, the system does */
+            if (columnName.equals(WeatherContract.WeatherEntry._ID)) continue;
+
+            /* Set the value to null */
+            testValues.putNull(columnName);
+
+            /* Insert ContentValues into database and get a row ID back */
+            long shouldFailRowId = database.insert(
+                    REFLECTED_TABLE_NAME,
+                    null,
+                    testValues);
+
+            String variableName = getConstantNameByStringValue(
+                    WeatherContract.WeatherEntry.class,
+                    columnName);
+
+            /* If the insert fails, which it should in this case, database.insert returns -1 */
+            String nullRowInsertShouldFail =
+                    "Insert should have failed due to a null value for column: '" + columnName + "'"
+                            + ", but didn't."
+                            + "\n Check that you've added NOT NULL to " + variableName
+                            + " in your create table statement in the WeatherEntry class."
+                            + "\n Row ID: ";
+            assertEquals(nullRowInsertShouldFail,
+                    -1,
+                    shouldFailRowId);
+
+            /* "Restore" the original value in testValues */
+            testValues.put(columnName, testValuesReferenceCopy.getAsDouble(columnName));
+        }
+
+        /* Close database */
+        dbHelper.close();
+    }
+
+    /**
+     * Tests to ensure that inserts into your database results in automatically
+     * incrementing row IDs.
+>>>>>>> 4174cf2... S07.02-Exercise-PreventInvalidInserts
      */
     @Test
     public void testIntegerAutoincrement() {
@@ -258,6 +327,61 @@ public class TestSunshineDatabase {
                 "IDs were reused and shouldn't be if autoincrement is setup properly.";
         assertNotSame(sequentialInsertsDoNotAutoIncrementId,
                 firstRowId, secondRowId);
+    }
+
+    /**
+     * This method tests the {@link WeatherDbHelper#onUpgrade(SQLiteDatabase, int, int)}. The proper
+     * behavior for this method in our case is to simply DROP (or delete) the weather table from
+     * the database and then have the table recreated.
+     */
+    @Test
+    public void testOnUpgradeBehavesCorrectly() {
+
+        testInsertSingleRecordIntoWeatherTable();
+
+        dbHelper.onUpgrade(database, 13, 14);
+
+        /*
+         * This Cursor will contain the names of each table in our database and we will use it to
+         * make sure that our weather table is still in the database after upgrading.
+         */
+        Cursor tableNameCursor = database.rawQuery(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name='" + REFLECTED_TABLE_NAME + "'",
+                null);
+
+        /*
+         * Our database should only contain one table, and so the above query should have one
+         * record in the cursor that queried for our table names.
+         */
+        int expectedTableCount = 1;
+        String shouldHaveSingleTable = "There should only be one table returned from this query.";
+        assertEquals(shouldHaveSingleTable,
+                expectedTableCount,
+                tableNameCursor.getCount());
+
+        /* We are done verifying our table names, so we can close this cursor */
+        tableNameCursor.close();
+
+        Cursor shouldBeEmptyWeatherCursor = database.query(
+                REFLECTED_TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        int expectedRecordCountAfterUpgrade = 0;
+        /* We will finally verify that our weather table is empty after */
+        String weatherTableShouldBeEmpty =
+                "Weather table should be empty after upgrade, but wasn't."
+                        + "\nNumber of records: ";
+        assertEquals(weatherTableShouldBeEmpty,
+                expectedRecordCountAfterUpgrade,
+                shouldBeEmptyWeatherCursor.getCount());
+
+        /* Test is over, close the cursor */
+        database.close();
     }
 
     /**
@@ -346,8 +470,11 @@ public class TestSunshineDatabase {
                 testWeatherValues);
 
         /* If the insert fails, database.insert returns -1 */
+        int valueOfIdIfInsertFails = -1;
         String insertFailed = "Unable to insert into the database";
-        assertTrue(insertFailed, weatherRowId != -1);
+        assertNotSame(insertFailed,
+                valueOfIdIfInsertFails,
+                weatherRowId);
 
         /*
          * Query the database and receive a Cursor. A Cursor is the primary way to interact with
