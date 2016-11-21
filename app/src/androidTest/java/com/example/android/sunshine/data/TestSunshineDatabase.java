@@ -193,7 +193,7 @@ public class TestSunshineDatabase {
 
     @Test
     public void testDatabaseVersionWasIncremented() {
-        int expectedDatabaseVersion = 2;
+        int expectedDatabaseVersion = 3;
         String databaseVersionShouldBe1 = "Database version should be "
                 + expectedDatabaseVersion + " but isn't."
                 + "\n Database version: ";
@@ -204,7 +204,6 @@ public class TestSunshineDatabase {
     }
 
     /**
-<<<<<<< HEAD
      * Tests to ensure that inserts into your database results in automatically incrementing row
      * IDs and that row IDs are not reused.
      * <p>
@@ -222,7 +221,60 @@ public class TestSunshineDatabase {
      * database again. If AUTOINCREMENT isn't set up properly in the WeatherDbHelper's table
      * create statement, then the _ID of the first insert will be reused. However, if AUTOINCREMENT
      * is setup properly, that older ID will NOT be reused, and the test will pass.
-=======
+     */
+    @Test
+    public void testDuplicateDateInsertBehaviorShouldReplace() {
+
+        /* Obtain weather values from TestUtilities */
+        ContentValues testWeatherValues = TestUtilities.createTestWeatherContentValues();
+
+        /*
+         * Get the original weather ID of the testWeatherValues to ensure we use a different
+         * weather ID for our next insert.
+         */
+        long originalWeatherId = testWeatherValues.getAsLong(REFLECTED_COLUMN_WEATHER_ID);
+
+        /* Insert the ContentValues with old weather ID into database */
+        database.insert(
+                WeatherContract.WeatherEntry.TABLE_NAME,
+                null,
+                testWeatherValues);
+
+        /*
+         * We don't really care what this ID is, just that it is different than the original and
+         * that we can use it to verify our "new" weather entry has been made.
+         */
+        long newWeatherId = originalWeatherId + 1;
+
+        testWeatherValues.put(REFLECTED_COLUMN_WEATHER_ID, newWeatherId);
+
+        /* Insert the ContentValues with new weather ID into database */
+        database.insert(
+                WeatherContract.WeatherEntry.TABLE_NAME,
+                null,
+                testWeatherValues);
+
+        /* Query for a weather record with our new weather ID */
+        Cursor newWeatherIdCursor = database.query(
+                REFLECTED_TABLE_NAME,
+                new String[]{REFLECTED_COLUMN_DATE},
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        String recordWithNewIdNotFound =
+                "New record did not overwrite the previous record for the same date.";
+        assertTrue(recordWithNewIdNotFound,
+                newWeatherIdCursor.getCount() == 1);
+
+        /* Always close the cursor after you're done with it */
+        newWeatherIdCursor.close();
+    }
+
+    /**
+>>>>>>> a6840f1... S07.03-Exercise-ConflictResolutionPolicy
      * Tests the columns with null values cannot be inserted into the database.
      */
     @Test
