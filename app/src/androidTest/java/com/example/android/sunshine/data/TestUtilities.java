@@ -26,6 +26,7 @@ import com.example.android.sunshine.utilities.SunshineDateUtils;
 import com.example.android.sunshine.utils.PollingCheck;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -235,6 +236,31 @@ class TestUtilities {
             }.run();
             mHT.quit();
         }
+    }
+
+    static String getConstantNameByStringValue(Class klass, String value)  {
+        for (Field f : klass.getDeclaredFields()) {
+            int modifiers = f.getModifiers();
+            Class<?> type = f.getType();
+            boolean isPublicStaticFinalString = Modifier.isStatic(modifiers)
+                    && Modifier.isFinal(modifiers)
+                    && Modifier.isPublic(modifiers)
+                    && type.isAssignableFrom(String.class);
+
+            if (isPublicStaticFinalString) {
+                String fieldName = f.getName();
+                try {
+                    String fieldValue = (String) klass.getDeclaredField(fieldName).get(null);
+                    if (fieldValue.equals(value)) return fieldName;
+                } catch (IllegalAccessException e) {
+                    return null;
+                } catch (NoSuchFieldException e) {
+                    return null;
+                }
+            }
+        }
+
+        return null;
     }
 
     static String getStaticStringField(Class clazz, String variableName)
