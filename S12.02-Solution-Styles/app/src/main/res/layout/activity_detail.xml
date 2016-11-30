@@ -25,6 +25,7 @@
   -                                                                                              -
   - Note that this is the PORTRAIT version of the layout.                                        -
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout

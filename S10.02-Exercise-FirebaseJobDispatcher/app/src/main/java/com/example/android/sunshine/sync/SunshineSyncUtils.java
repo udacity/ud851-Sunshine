@@ -25,13 +25,13 @@ import com.example.android.sunshine.data.WeatherContract;
 
 public class SunshineSyncUtils {
 
-//  TODO () Add constant values to sync Sunshine every 3 - 4 hours
+//  TODO (10) Add constant values to sync Sunshine every 3 - 4 hours
 
     private static boolean sInitialized;
 
-//  TODO () Add a sync tag to identify our sync job
+//  TODO (11) Add a sync tag to identify our sync job
 
-//  TODO () Create a method to schedule our periodic weather sync
+//  TODO (12) Create a method to schedule our periodic weather sync
 
     /**
      * Creates periodic sync tasks and checks to see if an immediate sync is required. If an
@@ -50,7 +50,7 @@ public class SunshineSyncUtils {
 
         sInitialized = true;
 
-//      TODO () Call the method you created to schedule a periodic weather sync
+//      TODO (13) Call the method you created to schedule a periodic weather sync
 
         /*
          * We need to check to see if our ContentProvider has data to display in our forecast

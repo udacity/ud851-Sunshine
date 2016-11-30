@@ -88,6 +88,7 @@ public class DetailActivity extends AppCompatActivity implements
     /* The URI that is used to access the chosen day's weather details */
     private Uri mUri;
 
+
     /*
      * This field is used for data binding. Normally, we would have to call findViewById many
      * times to get references to the Views in this Activity. With data binding however, we only
@@ -100,6 +101,7 @@ public class DetailActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         mDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
@@ -206,7 +208,6 @@ public class DetailActivity extends AppCompatActivity implements
 
     /**
      * Runs on the main thread when a load is complete. If initLoader is called (we call it from
-     * onCreate in DetailActivity) and the LoaderManager already has completed a previous load
      * for this Loader, onLoadFinished will be called immediately. Within onLoadFinished, we bind
      * the data to our views so the user can see the details of the weather on the date they
      * selected from the forecast.
@@ -237,7 +238,6 @@ public class DetailActivity extends AppCompatActivity implements
             /* No data to display, simply return and do nothing */
             return;
         }
-
 
         /****************
          * Weather Icon *
@@ -272,6 +272,7 @@ public class DetailActivity extends AppCompatActivity implements
          ***********************/
         /* Use the weatherId to obtain the proper description */
         String description = SunshineWeatherUtils.getStringForWeatherCondition(this, weatherId);
+
         /* Create the accessibility (a11y) String from the weather description */
         String descriptionA11y = getString(R.string.a11y_forecast, description);
 
@@ -293,6 +294,7 @@ public class DetailActivity extends AppCompatActivity implements
          * String.
          */
         String highString = SunshineWeatherUtils.formatTemperature(this, highInCelsius);
+
         /* Create the accessibility (a11y) String from the weather description */
         String highA11y = getString(R.string.a11y_high_temp, highString);
 
@@ -311,6 +313,7 @@ public class DetailActivity extends AppCompatActivity implements
          * String.
          */
         String lowString = SunshineWeatherUtils.formatTemperature(this, lowInCelsius);
+
         String lowA11y = getString(R.string.a11y_low_temp, lowString);
 
         /* Set the text and content description (for accessibility purposes) */
@@ -323,11 +326,13 @@ public class DetailActivity extends AppCompatActivity implements
         /* Read humidity from the cursor */
         float humidity = data.getFloat(INDEX_WEATHER_HUMIDITY);
         String humidityString = getString(R.string.format_humidity, humidity);
+
         String humidityA11y = getString(R.string.a11y_humidity, humidityString);
 
         /* Set the text and content description (for accessibility purposes) */
         mDetailBinding.extraDetails.humidity.setText(humidityString);
         mDetailBinding.extraDetails.humidity.setContentDescription(humidityA11y);
+
         mDetailBinding.extraDetails.humidityLabel.setContentDescription(humidityA11y);
 
         /****************************
@@ -337,11 +342,13 @@ public class DetailActivity extends AppCompatActivity implements
         float windSpeed = data.getFloat(INDEX_WEATHER_WIND_SPEED);
         float windDirection = data.getFloat(INDEX_WEATHER_DEGREES);
         String windString = SunshineWeatherUtils.getFormattedWind(this, windSpeed, windDirection);
+
         String windA11y = getString(R.string.a11y_wind, windString);
 
         /* Set the text and content description (for accessibility purposes) */
         mDetailBinding.extraDetails.windMeasurement.setText(windString);
         mDetailBinding.extraDetails.windMeasurement.setContentDescription(windA11y);
+
         mDetailBinding.extraDetails.windLabel.setContentDescription(windA11y);
 
         /************
@@ -358,11 +365,13 @@ public class DetailActivity extends AppCompatActivity implements
          * pressure.
          */
         String pressureString = getString(R.string.format_pressure, pressure);
+
         String pressureA11y = getString(R.string.a11y_pressure, pressureString);
 
         /* Set the text and content description (for accessibility purposes) */
         mDetailBinding.extraDetails.pressure.setText(pressureString);
         mDetailBinding.extraDetails.pressure.setContentDescription(pressureA11y);
+
         mDetailBinding.extraDetails.pressureLabel.setContentDescription(pressureA11y);
 
         /* Store the forecast summary String in our forecast summary field to share later */

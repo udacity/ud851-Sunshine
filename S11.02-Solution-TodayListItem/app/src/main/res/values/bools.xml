@@ -14,8 +14,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!-- COMPLETED (3) Create a resources file called bools.xml within the res/values directory -->
+
 <resources>
-    <!-- COMPLETED (4) Within bools.xml in the values directory, add a bool called use_today_layout and set it to false-->
+    <bool name="show_notifications_by_default">true</bool>
     <bool name="use_today_layout">false</bool>
+    <!-- COMPLETED (3) Add a bool called use_today_layout and set it to false -->
 </resources>

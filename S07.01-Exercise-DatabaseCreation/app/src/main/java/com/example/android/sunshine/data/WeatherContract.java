@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 The Android Open Source Project
+ * Copyright (C) 2016 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ public class WeatherContract {
 
 //  TODO (1) Within WeatherContract, create a public static final class called WeatherEntry that implements BaseColumns
 
-//      Do steps ### through ### within the WeatherEntry class
+//      Do steps 2 through 10 within the WeatherEntry class
 
 //      TODO (2) Create a public static final String call TABLE_NAME with the value "weather"
 

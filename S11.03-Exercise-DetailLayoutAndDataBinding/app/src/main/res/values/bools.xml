@@ -15,5 +15,6 @@
      limitations under the License.
 -->
 <resources>
+    <bool name="show_notifications_by_default">true</bool>
     <bool name="use_today_layout">false</bool>
 </resources>

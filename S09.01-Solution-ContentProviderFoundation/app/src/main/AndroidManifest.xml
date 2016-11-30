@@ -52,7 +52,7 @@
         <!--The manifest entry for our SettingsActivity. Each Activity requires a manifest entry-->
         <activity android:name=".SettingsActivity"/>
 
-        <!-- COMPLETED (5) Register WeatherProvider in the manifest with the correct authorities -->
+        <!-- COMPLETED (6) Register WeatherProvider in the manifest with the correct authorities -->
         <!-- Our ContentProvider -->
         <provider
             android:name=".data.WeatherProvider"
