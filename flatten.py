@@ -35,6 +35,7 @@ def flatten(repo_dir, target_dir, student, develop_branches, remove_branches, li
     if remove_branches:
         remove_local_branches(repo, student, develop_branches)
 
+
     flat = len(develop_branches) == 1
 
     # print develop_branches
@@ -68,7 +69,7 @@ def flatten(repo_dir, target_dir, student, develop_branches, remove_branches, li
 
 def remove_local_branches(repo, student, develop_branches):
     for branch in repo.branches:
-        if branch.name != student and branch not in develop_branches:
+        if branch.name != student and str(branch) not in develop_branches:
             print "Removing local branch:", branch.name
             repo.git.branch(branch.name, "-D")
 
@@ -166,6 +167,8 @@ def main():
                         help="the branches where snapshots will be copied from")
 
     parsed = parser.parse_args()
+
+
 
     flatten(
         parsed.directory,

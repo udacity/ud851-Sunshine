@@ -63,8 +63,8 @@
             android:name=".sync.SunshineSyncIntentService"
             android:exported="false" />
 
-        <!-- TODO () Declare SunshineFirebaseJobService as a service in the manifest -->
-            <!-- TODO () Declare an intent filter with the action ACTION_EXECUTE -->
+        <!-- TODO (8) Declare SunshineFirebaseJobService as a service in the manifest -->
+            <!-- TODO (9) Declare an intent filter with the action ACTION_EXECUTE -->
 
     </application>
 </manifest>

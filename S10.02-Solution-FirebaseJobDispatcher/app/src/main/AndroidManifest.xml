@@ -63,12 +63,12 @@
             android:name=".sync.SunshineSyncIntentService"
             android:exported="false" />
 
-        <!-- COMPLETED () Declare SunshineFirebaseJobService as a service in the manifest -->
+        <!-- COMPLETED (8) Declare SunshineFirebaseJobService as a service in the manifest -->
         <!-- This is the Service declaration used in conjunction with FirebaseJobDispatcher -->
         <service
             android:name=".sync.SunshineFirebaseJobService"
             android:exported="false">
-            <!-- COMPLETED () Declare an intent filter with the action ACTION_EXECUTE -->
+            <!-- COMPLETED (9) Declare an intent filter with the action ACTION_EXECUTE -->
             <intent-filter>
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
             </intent-filter>

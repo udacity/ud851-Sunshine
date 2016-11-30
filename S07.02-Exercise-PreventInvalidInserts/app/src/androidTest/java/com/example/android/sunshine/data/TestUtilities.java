@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 The Android Open Source Project
+ * Copyright (C) 2016 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,21 @@ import android.os.HandlerThread;
 import com.example.android.sunshine.utilities.SunshineDateUtils;
 import com.example.android.sunshine.utils.PollingCheck;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_DATE;
+import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_HUMIDITY;
+import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_MAX;
+import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_MIN;
+import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_PRESSURE;
+import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_WEATHER_ID;
+import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_WIND_DIR;
+import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_WIND_SPEED;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
@@ -103,14 +115,14 @@ class TestUtilities {
 
         ContentValues testWeatherValues = new ContentValues();
 
-        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_DATE, DATE_NORMALIZED);
-        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_DEGREES, 1.1);
-        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_HUMIDITY, 1.2);
-        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_PRESSURE, 1.3);
-        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_MAX_TEMP, 75);
-        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_MIN_TEMP, 65);
-        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_WIND_SPEED, 5.5);
-        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_WEATHER_ID, 321);
+        testWeatherValues.put(REFLECTED_COLUMN_DATE, DATE_NORMALIZED);
+        testWeatherValues.put(REFLECTED_COLUMN_WIND_DIR, 1.1);
+        testWeatherValues.put(REFLECTED_COLUMN_HUMIDITY, 1.2);
+        testWeatherValues.put(REFLECTED_COLUMN_PRESSURE, 1.3);
+        testWeatherValues.put(REFLECTED_COLUMN_MAX, 75);
+        testWeatherValues.put(REFLECTED_COLUMN_MIN, 65);
+        testWeatherValues.put(REFLECTED_COLUMN_WIND_SPEED, 5.5);
+        testWeatherValues.put(REFLECTED_COLUMN_WEATHER_ID, 321);
 
         return testWeatherValues;
     }
@@ -140,14 +152,14 @@ class TestUtilities {
 
             ContentValues weatherValues = new ContentValues();
 
-            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_DATE, normalizedTestDate);
-            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_DEGREES, 1.1);
-            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_HUMIDITY, 1.2 + 0.01 * (float) i);
-            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_PRESSURE, 1.3 - 0.01 * (float) i);
-            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_MAX_TEMP, 75 + i);
-            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_MIN_TEMP, 65 - i);
-            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_WIND_SPEED, 5.5 + 0.2 * (float) i);
-            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_WEATHER_ID, 321);
+            weatherValues.put(REFLECTED_COLUMN_DATE, normalizedTestDate);
+            weatherValues.put(REFLECTED_COLUMN_WIND_DIR, 1.1);
+            weatherValues.put(REFLECTED_COLUMN_HUMIDITY, 1.2 + 0.01 * (float) i);
+            weatherValues.put(REFLECTED_COLUMN_PRESSURE, 1.3 - 0.01 * (float) i);
+            weatherValues.put(REFLECTED_COLUMN_MAX, 75 + i);
+            weatherValues.put(REFLECTED_COLUMN_MIN, 65 - i);
+            weatherValues.put(REFLECTED_COLUMN_WIND_SPEED, 5.5 + 0.2 * (float) i);
+            weatherValues.put(REFLECTED_COLUMN_WEATHER_ID, 321);
 
             bulkTestWeatherValues[i] = weatherValues;
         }
@@ -223,6 +235,77 @@ class TestUtilities {
                 }
             }.run();
             mHT.quit();
+        }
+    }
+
+    static String getConstantNameByStringValue(Class klass, String value)  {
+        for (Field f : klass.getDeclaredFields()) {
+            int modifiers = f.getModifiers();
+            Class<?> type = f.getType();
+            boolean isPublicStaticFinalString = Modifier.isStatic(modifiers)
+                    && Modifier.isFinal(modifiers)
+                    && Modifier.isPublic(modifiers)
+                    && type.isAssignableFrom(String.class);
+
+            if (isPublicStaticFinalString) {
+                String fieldName = f.getName();
+                try {
+                    String fieldValue = (String) klass.getDeclaredField(fieldName).get(null);
+                    if (fieldValue.equals(value)) return fieldName;
+                } catch (IllegalAccessException e) {
+                    return null;
+                } catch (NoSuchFieldException e) {
+                    return null;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    static String getStaticStringField(Class clazz, String variableName)
+            throws NoSuchFieldException, IllegalAccessException {
+        Field stringField = clazz.getDeclaredField(variableName);
+        stringField.setAccessible(true);
+        String value = (String) stringField.get(null);
+        return value;
+    }
+
+    static Integer getStaticIntegerField(Class clazz, String variableName)
+            throws NoSuchFieldException, IllegalAccessException {
+        Field intField = clazz.getDeclaredField(variableName);
+        intField.setAccessible(true);
+        Integer value = (Integer) intField.get(null);
+        return value;
+    }
+
+    static String studentReadableClassNotFound(ClassNotFoundException e) {
+        String message = e.getMessage();
+        int indexBeforeSimpleClassName = message.lastIndexOf('.');
+        String simpleClassNameThatIsMissing = message.substring(indexBeforeSimpleClassName + 1);
+        simpleClassNameThatIsMissing = simpleClassNameThatIsMissing.replaceAll("\\$", ".");
+        String fullClassNotFoundReadableMessage = "Couldn't find the class "
+                + simpleClassNameThatIsMissing
+                + ".\nPlease make sure you've created that class and followed the TODOs.";
+        return fullClassNotFoundReadableMessage;
+    }
+
+    static String studentReadableNoSuchField(NoSuchFieldException e) {
+        String message = e.getMessage();
+
+        Pattern p = Pattern.compile("No field (\\w*) in class L.*/(\\w*\\$?\\w*);");
+
+        Matcher m = p.matcher(message);
+
+        if (m.find()) {
+            String missingFieldName = m.group(1);
+            String classForField = m.group(2).replaceAll("\\$", ".");
+            String fieldNotFoundReadableMessage = "Couldn't find "
+                    + missingFieldName + " in class " + classForField + "."
+                    + "\nPlease make sure you've declared that field and followed the TODOs.";
+            return fieldNotFoundReadableMessage;
+        } else {
+            return e.getMessage();
         }
     }
 }
