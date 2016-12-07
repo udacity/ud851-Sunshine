@@ -42,23 +42,23 @@ def flatten(repo_dir, target_dir, student, develop_branches, remove_branches, li
 
     try:
         temp_dir = tempfile.mkdtemp()
-        try:
-            current_branch = repo.active_branch
-            print "Stashing"
-            repo.git.stash()
+        # try:
+            # current_branch = repo.active_branch
+            # print "Stashing"
+            # repo.git.stash()
 
-            for develop in develop_branches:
-                to_temp_dir(repo, repo_dir, develop, temp_dir, flat, links)
-            if links:
-                insert_diff_links(temp_dir)
+        for develop in develop_branches:
+            to_temp_dir(repo, repo_dir, develop, temp_dir, flat, links)
+        if links:
+            insert_diff_links(temp_dir)
 
-            copy_snapshots(repo, student, temp_dir, target_dir)
-        finally:
-            if current_branch:
-                repo.git.checkout(current_branch)
-            print "Popping"
-            if repo.git.stash("list"):
-                repo.git.stash("pop")
+        copy_snapshots(repo, student, temp_dir, target_dir)
+        # finally:
+            # if current_branch:
+            #     repo.git.checkout(current_branch)
+            # print "Popping"
+            # if repo.git.stash("list"):
+            #     repo.git.stash("pop")
     finally:
         if os.path.exists(temp_dir):
             shutil.rmtree(temp_dir)
