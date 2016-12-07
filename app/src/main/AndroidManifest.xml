@@ -57,6 +57,8 @@
             android:name=".data.WeatherProvider"
             android:authorities="@string/content_authority"
             android:exported="false"/>
+        
+        <!-- TODO (8) Register SunshineSyncIntentService in the manifest -->
 
     </application>
 </manifest>
