@@ -14,28 +14,77 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!-- TODO (1) Change the FrameLayout to a vertical LinearLayout -->
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!-- COMPLETED (1) Change the FrameLayout to a vertical LinearLayout -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="8dp">
 
-    <!-- TODO (2) Remove the tv_display_weather TextView -->
-    <!-- Text that describes the weather summary for a given day -->
+    <!-- COMPLETED (2) Remove the tv_display_weather TextView -->
+
+    <!-- COMPLETED (3) Add a TextView for the selected day's date -->
     <TextView
-        android:id="@+id/tv_display_weather"
+        android:id="@+id/date"
+        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
-        tools:text="Saturday, October 1 - Sunny - 78° / 63°"/>
-    <!-- TODO (3) Add a TextView for the selected day's date -->
-    <!-- TODO (4) Add a TextView for the selected day's weather description -->
-    <!-- TODO (5) Add a TextView for the selected day's high temperature -->
-    <!-- TODO (6) Add a TextView for the selected day's low temperature -->
-    <!-- TODO (7) Add a TextView for the selected day's humidity -->
-    <!-- TODO (8) Add a TextView for the selected day's pressure -->
-    <!-- TODO (9) Add a TextView for the selected day's wind -->
+        tools:text="Saturday, September 24"/>
 
-</FrameLayout>
+    <!-- COMPLETED (4) Add a TextView for the selected day's weather description -->
+    <!-- Text that describes weather condition -->
+    <TextView
+        android:id="@+id/weather_description"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Rainy"/>
 
+    <!-- COMPLETED (5) Add a TextView for the selected day's high temperature -->
+    <!-- High temperature for today -->
+    <TextView
+        android:id="@+id/high_temperature"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="19\u00b0"/>
+
+    <!-- COMPLETED (6) Add a TextView for the selected day's low temperature -->
+    <!-- Low temperature for today -->
+    <TextView
+        android:id="@+id/low_temperature"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="10\u00b0"/>
+
+    <!-- COMPLETED (7) Add a TextView for the selected day's humidity -->
+    <!-- Humidity  -->
+    <TextView
+        android:id="@+id/humidity"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="38%"/>
+
+    <!-- COMPLETED (8) Add a TextView for the selected day's pressure -->
+    <!-- Pressure  -->
+    <TextView
+        android:id="@+id/pressure"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="995 hPa"/>
+
+    <!-- COMPLETED (9) Add a TextView for the selected day's wind -->
+    <!-- Wind  -->
+    <TextView
+        android:id="@+id/wind"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="4km/h NW"/>
+
+</LinearLayout>
