@@ -42,7 +42,6 @@ public class DetailActivity extends AppCompatActivity implements
      */
     private static final String FORECAST_SHARE_HASHTAG = " #SunshineApp";
 
-
     /*
      * The columns of data that we are interested in displaying within our DetailActivity's
      * weather display.

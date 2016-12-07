@@ -50,7 +50,7 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <!-- Selected day's date -->
+
     <TextView
         android:id="@+id/date"
         style="@style/TextAppearance.AppCompat.Large"
