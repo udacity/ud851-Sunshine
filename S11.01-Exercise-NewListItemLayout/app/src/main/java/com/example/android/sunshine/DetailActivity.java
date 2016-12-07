@@ -42,7 +42,6 @@ public class DetailActivity extends AppCompatActivity implements
      */
     private static final String FORECAST_SHARE_HASHTAG = " #SunshineApp";
 
-
     /*
      * The columns of data that we are interested in displaying within our DetailActivity's
      * weather display.
@@ -87,6 +86,7 @@ public class DetailActivity extends AppCompatActivity implements
     /* The URI that is used to access the chosen day's weather details */
     private Uri mUri;
 
+
     private TextView mDateView;
     private TextView mDescriptionView;
     private TextView mHighTemperatureView;
@@ -115,6 +115,8 @@ public class DetailActivity extends AppCompatActivity implements
         mHumidityView = (TextView) findViewById(R.id.humidity);
         mWindView = (TextView) findViewById(R.id.wind);
         mPressureView = (TextView) findViewById(R.id.pressure);
+
+
 
         mUri = getIntent().getData();
         if (mUri == null) throw new NullPointerException("URI for DetailActivity cannot be null");

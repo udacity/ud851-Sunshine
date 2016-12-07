@@ -23,6 +23,7 @@ import android.content.Intent;
  * a service on a separate handler thread.
  */
 public class SunshineSyncIntentService extends IntentService {
+
     public SunshineSyncIntentService() {
         super("SunshineSyncIntentService");
     }

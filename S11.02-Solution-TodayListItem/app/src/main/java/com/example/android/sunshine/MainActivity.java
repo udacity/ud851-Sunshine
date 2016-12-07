@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements
     public static final int INDEX_WEATHER_MIN_TEMP = 2;
     public static final int INDEX_WEATHER_CONDITION_ID = 3;
 
+
     /*
      * This ID will be used to identify the Loader responsible for loading our weather forecast. In
      * some cases, one Activity can deal with many Loaders. However, in our case, there is only one.
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements
     private int mPosition = RecyclerView.NO_POSITION;
 
     private ProgressBar mLoadingIndicator;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements
         /* Setting the adapter attaches it to the RecyclerView in our layout. */
         mRecyclerView.setAdapter(mForecastAdapter);
 
+
         showLoading();
 
         /*
@@ -150,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements
         getSupportLoaderManager().initLoader(ID_FORECAST_LOADER, null, this);
 
         SunshineSyncUtils.initialize(this);
+
     }
 
     /**
@@ -189,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements
      */
     @Override
     public Loader<Cursor> onCreateLoader(int loaderId, Bundle bundle) {
+
 
         switch (loaderId) {
 
@@ -230,10 +235,10 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 
+
         mForecastAdapter.swapCursor(data);
         if (mPosition == RecyclerView.NO_POSITION) mPosition = 0;
         mRecyclerView.smoothScrollToPosition(mPosition);
-
         if (data.getCount() != 0) showWeatherDataView();
     }
 
