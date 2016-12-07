@@ -37,16 +37,12 @@ import com.example.android.sunshine.data.SunshinePreferences;
 import com.example.android.sunshine.data.WeatherContract;
 import com.example.android.sunshine.utilities.FakeDataUtils;
 
-
 public class MainActivity extends AppCompatActivity implements
-//      COMPLETED (15) Remove the implements declaration for SharedPreferences change listener
-//      COMPLETED (20) Implement LoaderCallbacks<Cursor> instead of String[]
         LoaderManager.LoaderCallbacks<Cursor>,
         ForecastAdapter.ForecastAdapterOnClickHandler {
 
     private final String TAG = MainActivity.class.getSimpleName();
 
-//  COMPLETED (16) Create a String array containing the names of the desired data columns from our ContentProvider
     /*
      * The columns of data that we are interested in displaying within our MainActivity's list of
      * weather data.
@@ -58,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements
             WeatherContract.WeatherEntry.COLUMN_WEATHER_ID,
     };
 
-//  COMPLETED (17) Create constant int values representing each column name's position above
     /*
      * We store the indices of the values in the array of Strings above to more quickly be able to
      * access the data from our query. If the order of the Strings above changes, these indices
@@ -69,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements
     public static final int INDEX_WEATHER_MIN_TEMP = 2;
     public static final int INDEX_WEATHER_CONDITION_ID = 3;
 
-//  COMPLETED (37) Remove the error TextView
 
     /*
      * This ID will be used to identify the Loader responsible for loading our weather forecast. In
@@ -86,15 +80,12 @@ public class MainActivity extends AppCompatActivity implements
 
     private ProgressBar mLoadingIndicator;
 
-//  COMPLETED (35) Remove the preference change flag
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forecast);
         getSupportActionBar().setElevation(0f);
-
-
 
         FakeDataUtils.insertFakeData(this);
 
@@ -103,8 +94,6 @@ public class MainActivity extends AppCompatActivity implements
          * do things like set the adapter of the RecyclerView and toggle the visibility.
          */
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_forecast);
-
-//      COMPLETED (36) Remove the findViewById call for the error TextView
 
         /*
          * The ProgressBar that will indicate to the user that we are loading data. It will be
@@ -141,7 +130,6 @@ public class MainActivity extends AppCompatActivity implements
          */
         mRecyclerView.setHasFixedSize(true);
 
-//      COMPLETED (4) Pass in this again as the ForecastAdapter now requires a Context
         /*
          * The ForecastAdapter is responsible for linking our weather data with the Views that
          * will end up displaying our weather data.
@@ -158,11 +146,7 @@ public class MainActivity extends AppCompatActivity implements
         mRecyclerView.setAdapter(mForecastAdapter);
 
 
-//      COMPLETED (18) Call the showLoading method
         showLoading();
-
-
-
 
         /*
          * Ensures a loader is initialized and active. If the loader doesn't already exist, one is
@@ -171,9 +155,6 @@ public class MainActivity extends AppCompatActivity implements
          */
         getSupportLoaderManager().initLoader(ID_FORECAST_LOADER, null, this);
 
-
-
-//      COMPLETED (19) Remove the statement that registers Mainactivity as a preference change listener
     }
 
     /**
@@ -202,7 +183,6 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-//  COMPLETED (21) Refactor onCreateLoader to return a Loader<Cursor>, not Loader<String[]>
     /**
      * Called by the {@link android.support.v4.app.LoaderManagerImpl} when a new Loader needs to be
      * created. This Activity only uses one loader, so we don't necessarily NEED to check the
@@ -215,13 +195,9 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public Loader<Cursor> onCreateLoader(int loaderId, Bundle bundle) {
 
-//      COMPLETED (23) Remove the onStartLoading method declaration
-//      COMPLETED (24) Remove the loadInBackground method declaration
-//      COMPLETED (25) Remove the deliverResult method declaration
 
         switch (loaderId) {
 
-//          COMPLETED (22) If the loader requested is our forecast loader, return the appropriate CursorLoader
             case ID_FORECAST_LOADER:
                 /* URI for all rows of weather data in our weather table */
                 Uri forecastQueryUri = WeatherContract.WeatherEntry.CONTENT_URI;
@@ -246,7 +222,6 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-//  COMPLETED (26) Change onLoadFinished parameter to a Loader<Cursor> instead of a Loader<String[]>
     /**
      * Called when a Loader has finished loading its data.
      *
@@ -261,16 +236,10 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 
-//      COMPLETED (27) Remove the previous body of onLoadFinished
 
-//      COMPLETED (28) Call mForecastAdapter's swapCursor method and pass in the new Cursor
         mForecastAdapter.swapCursor(data);
-//      COMPLETED (29) If mPosition equals RecyclerView.NO_POSITION, set it to 0
         if (mPosition == RecyclerView.NO_POSITION) mPosition = 0;
-//      COMPLETED (30) Smooth scroll the RecyclerView to mPosition
         mRecyclerView.smoothScrollToPosition(mPosition);
-
-//      COMPLETED (31) If the Cursor's size is not equal to 0, call showWeatherDataView
         if (data.getCount() != 0) showWeatherDataView();
     }
 
@@ -282,7 +251,6 @@ public class MainActivity extends AppCompatActivity implements
      */
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-//      COMPLETED (32) Call mForecastAdapter's swapCursor method and pass in null
         /*
          * Since this Loader's data is now invalid, we need to clear the Adapter that is
          * displaying the data.
@@ -290,6 +258,7 @@ public class MainActivity extends AppCompatActivity implements
         mForecastAdapter.swapCursor(null);
     }
 
+    //  TODO (38) Refactor onClick to accept a long instead of a String as its parameter
     /**
      * This method is for responding to clicks from our list.
      *
@@ -297,6 +266,7 @@ public class MainActivity extends AppCompatActivity implements
      */
     @Override
     public void onClick(String weatherForDay) {
+//      TODO (39) Refactor onClick to build a URI for the clicked date and and pass it with the Intent using setData
         Context context = this;
         Class destinationClass = DetailActivity.class;
         Intent intentToStartDetailActivity = new Intent(context, destinationClass);
@@ -318,9 +288,6 @@ public class MainActivity extends AppCompatActivity implements
         mRecyclerView.setVisibility(View.VISIBLE);
     }
 
-//  COMPLETED (33) Delete showErrorMessage
-
-//  COMPLETED (34) Create a method called showLoading that shows the loading indicator and hides the data
     /**
      * This method will make the loading indicator visible and hide the weather View and error
      * message.

@@ -39,7 +39,6 @@
         android:clipToPadding="false"
         android:paddingBottom="8dp"/>
 
-    <!-- COMPLETED (38) Remove this error message TextView -->
 
     <!-- A progress bar that will be shown to users to indicate that weather data is loading -->
     <ProgressBar
