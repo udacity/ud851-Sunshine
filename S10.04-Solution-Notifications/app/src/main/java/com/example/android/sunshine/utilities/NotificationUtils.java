@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v4.content.ContextCompat;
 
 import com.example.android.sunshine.DetailActivity;
 import com.example.android.sunshine.R;
@@ -104,7 +105,7 @@ public class NotificationUtils {
              */
 //          COMPLETED (2) Use NotificationCompat.Builder to begin building the notification
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
-                    .setColor(resources.getColor(R.color.colorPrimary))
+                    .setColor(ContextCompat.getColor(context,R.color.colorPrimary))
                     .setSmallIcon(smallArtResourceId)
                     .setLargeIcon(largeIcon)
                     .setContentTitle(notificationTitle)
