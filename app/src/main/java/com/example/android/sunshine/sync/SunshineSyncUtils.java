@@ -17,15 +17,19 @@ package com.example.android.sunshine.sync;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 
-import com.example.android.sunshine.data.WeatherContract;
 
-// COMPLETED (9) Create a class called SunshineSyncUtils
 public class SunshineSyncUtils {
-    //  COMPLETED (10) Create a public static void method called startImmediateSync
+
+//  TODO (1) Declare a private static boolean field called sInitialized
+
+    //  TODO (2) Create a synchronized public static void method called initialize
+    //  TODO (3) Only execute this method body if sInitialized is false
+    //  TODO (4) If the method body is executed, set sInitialized to true
+    //  TODO (5) Check to see if our weather ContentProvider is empty
+        //  TODO (6) If it is empty or we have a null Cursor, sync the weather now!
+
     /**
      * Helper method to perform a sync immediately using an IntentService for asynchronous
      * execution.
@@ -33,7 +37,6 @@ public class SunshineSyncUtils {
      * @param context The Context used to start the IntentService for the sync.
      */
     public static void startImmediateSync(@NonNull final Context context) {
-//      COMPLETED (11) Within that method, start the SunshineSyncIntentService
         Intent intentToSyncImmediately = new Intent(context, SunshineSyncIntentService.class);
         context.startService(intentToSyncImmediately);
     }
