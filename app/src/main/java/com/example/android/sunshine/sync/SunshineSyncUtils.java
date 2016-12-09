@@ -19,15 +19,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
 import com.example.android.sunshine.data.WeatherContract;
 
 public class SunshineSyncUtils {
 
-//  COMPLETED (1) Declare a private static boolean field called sInitialized
+//  TODO (10) Add constant values to sync Sunshine every 3 - 4 hours
+
     private static boolean sInitialized;
+
+//  TODO (11) Add a sync tag to identify our sync job
+
+//  TODO (12) Create a method to schedule our periodic weather sync
 
     /**
      * Creates periodic sync tasks and checks to see if an immediate sync is required. If an
@@ -36,29 +40,27 @@ public class SunshineSyncUtils {
      * @param context Context that will be passed to other methods and used to access the
      *                ContentResolver
      */
-    //  COMPLETED (2) Create a synchronized public static void method called initialize
     synchronized public static void initialize(@NonNull final Context context) {
 
-//      COMPLETED (3) Only execute this method body if sInitialized is false
         /*
          * Only perform initialization once per app lifetime. If initialization has already been
          * performed, we have nothing to do in this method.
          */
         if (sInitialized) return;
 
-//      COMPLETED (4) If the method body is executed, set sInitialized to true
         sInitialized = true;
 
-//      COMPLETED (5) Check to see if our weather ContentProvider is empty
+//      TODO (13) Call the method you created to schedule a periodic weather sync
+
         /*
          * We need to check to see if our ContentProvider has data to display in our forecast
          * list. However, performing a query on the main thread is a bad idea as this may
          * cause our UI to lag. Therefore, we create a thread in which we will run the query
          * to check the contents of our ContentProvider.
          */
-        new AsyncTask<Void, Void, Void>() {
+        Thread checkForEmpty = new Thread(new Runnable() {
             @Override
-            public Void doInBackground( Void... voids ) {
+            public void run() {
 
                 /* URI for every row of weather data in our weather table*/
                 Uri forecastQueryUri = WeatherContract.WeatherEntry.CONTENT_URI;
@@ -94,16 +96,17 @@ public class SunshineSyncUtils {
                  * If the Cursor was null OR if it was empty, we need to sync immediately to
                  * be able to display data to the user.
                  */
-                //  COMPLETED (6) If it is empty or we have a null Cursor, sync the weather now!
                 if (null == cursor || cursor.getCount() == 0) {
                     startImmediateSync(context);
                 }
 
                 /* Make sure to close the Cursor to avoid memory leaks! */
                 cursor.close();
-                return null;
             }
-        }.execute();
+        });
+
+        /* Finally, once the thread is prepared, fire it off to perform our checks. */
+        checkForEmpty.start();
     }
 
     /**
