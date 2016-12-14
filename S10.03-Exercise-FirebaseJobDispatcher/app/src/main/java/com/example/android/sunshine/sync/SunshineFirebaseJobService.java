@@ -17,9 +17,9 @@
 
 // TODO (3) Add a class called SunshineFirebaseJobService that extends jobdispatcher.JobService
 
-//  TODO (4) Declare a Thread field called mFetchWeatherThread
+//  TODO (4) Declare an ASyncTask field called mFetchWeatherTask
 
-//  TODO (5) Override onStartJob and within it, spawn off a separate thread to sync weather data
+//  TODO (5) Override onStartJob and within it, spawn off a separate ASyncTask to sync weather data
 //              TODO (6) Once the weather data is sync'd, call jobFinished with the appropriate arguments
 
-//  TODO (7) Override onStopJob, interrupt the thread and set it to null and return true
+//  TODO (7) Override onStopJob, cancel the ASyncTask if it's not null and return true
