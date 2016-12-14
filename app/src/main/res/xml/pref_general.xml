@@ -32,4 +32,10 @@
         android:key="@string/pref_units_key"
         android:title="@string/pref_units_label" />
 
+    <!-- TODO (9) Add a new resource file for boolean values in the res directory and call it bools.xml -->
+    <!-- TODO (10) Add a boolean value for showing notifications by default to res/bools.xml -->
+
+    <!-- TODO (11) Add a checkbox preference for enabling and disabling notifications -->
+    <!-- TODO (12) Set the default of whether or not to show preferences using bools.xml -->
+
 </PreferenceScreen>

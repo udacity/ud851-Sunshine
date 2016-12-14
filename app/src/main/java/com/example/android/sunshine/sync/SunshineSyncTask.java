@@ -27,7 +27,6 @@ import java.net.URL;
 
 public class SunshineSyncTask {
 
-
     /**
      * Performs the network request for updated weather, parses the JSON from that request, and
      * inserts the new weather information into our ContentProvider. Will notify the user that new
@@ -37,7 +36,6 @@ public class SunshineSyncTask {
      * @param context Used to access utility methods and the ContentResolver
      */
     synchronized public static void syncWeather(Context context) {
-
 
         try {
             /*
@@ -74,14 +72,20 @@ public class SunshineSyncTask {
                 sunshineContentResolver.bulkInsert(
                         WeatherContract.WeatherEntry.CONTENT_URI,
                         weatherValues);
-            }
+
+//              TODO (13) Check if notifications are enabled
+
+//              TODO (14) Check if a day has passed since the last notification
+
+//              TODO (15) If more than a day have passed and notifications are enabled, notify the user
 
             /* If the code reaches this point, we have successfully performed our sync */
+
+            }
 
         } catch (Exception e) {
             /* Server probably invalid */
             e.printStackTrace();
         }
     }
-
 }
