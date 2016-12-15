@@ -15,24 +15,27 @@
      limitations under the License.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="vertical">
 
-    <!-- This TextView holds the weather data for one particular day in the forecast -->
+    <!--This TextView holds the weather data for one particular day in the forecast-->
     <TextView
         android:id="@+id/tv_weather_data"
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp"/>
+        android:padding="16dp"
+        tools:text="Saturday, October 1 - Sunny - 78° / 63°"/>
 
-    <!-- This View serves as a visual divider between list items -->
+    <!--This View serves as a visual divider between list items-->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#dadada"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp" />
+        android:layout_marginRight="8dp"
+        android:background="#dadada"/>
 
 </LinearLayout>
+
