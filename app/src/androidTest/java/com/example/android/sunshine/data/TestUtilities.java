@@ -32,16 +32,17 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_DATE;
-import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_HUMIDITY;
-import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_MAX;
-import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_MIN;
-import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_PRESSURE;
-import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_WEATHER_ID;
-import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_WIND_DIR;
-import static com.example.android.sunshine.data.TestSunshineDatabase.REFLECTED_COLUMN_WIND_SPEED;
+import static com.example.android.sunshine.data.WeatherContract.WeatherEntry.COLUMN_DATE;
+import static com.example.android.sunshine.data.WeatherContract.WeatherEntry.COLUMN_DEGREES;
+import static com.example.android.sunshine.data.WeatherContract.WeatherEntry.COLUMN_HUMIDITY;
+import static com.example.android.sunshine.data.WeatherContract.WeatherEntry.COLUMN_MAX_TEMP;
+import static com.example.android.sunshine.data.WeatherContract.WeatherEntry.COLUMN_MIN_TEMP;
+import static com.example.android.sunshine.data.WeatherContract.WeatherEntry.COLUMN_PRESSURE;
+import static com.example.android.sunshine.data.WeatherContract.WeatherEntry.COLUMN_WEATHER_ID;
+import static com.example.android.sunshine.data.WeatherContract.WeatherEntry.COLUMN_WIND_SPEED;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
 /**
@@ -67,6 +68,10 @@ class TestUtilities {
      * @param expectedValues The values we expect to receive in valueCursor
      */
     static void validateThenCloseCursor(String error, Cursor valueCursor, ContentValues expectedValues) {
+        assertNotNull(
+                "This cursor is null. Did you make sure to register your ContentProvider in the manifest?",
+                valueCursor);
+
         assertTrue("Empty cursor returned. " + error, valueCursor.moveToFirst());
         validateCurrentRecord(error, valueCursor, expectedValues);
         valueCursor.close();
@@ -115,14 +120,14 @@ class TestUtilities {
 
         ContentValues testWeatherValues = new ContentValues();
 
-        testWeatherValues.put(REFLECTED_COLUMN_DATE, DATE_NORMALIZED);
-        testWeatherValues.put(REFLECTED_COLUMN_WIND_DIR, 1.1);
-        testWeatherValues.put(REFLECTED_COLUMN_HUMIDITY, 1.2);
-        testWeatherValues.put(REFLECTED_COLUMN_PRESSURE, 1.3);
-        testWeatherValues.put(REFLECTED_COLUMN_MAX, 75);
-        testWeatherValues.put(REFLECTED_COLUMN_MIN, 65);
-        testWeatherValues.put(REFLECTED_COLUMN_WIND_SPEED, 5.5);
-        testWeatherValues.put(REFLECTED_COLUMN_WEATHER_ID, 321);
+        testWeatherValues.put(COLUMN_DATE, DATE_NORMALIZED);
+        testWeatherValues.put(COLUMN_DEGREES, 1.1);
+        testWeatherValues.put(COLUMN_HUMIDITY, 1.2);
+        testWeatherValues.put(COLUMN_PRESSURE, 1.3);
+        testWeatherValues.put(COLUMN_MAX_TEMP, 75);
+        testWeatherValues.put(COLUMN_MIN_TEMP, 65);
+        testWeatherValues.put(COLUMN_WIND_SPEED, 5.5);
+        testWeatherValues.put(COLUMN_WEATHER_ID, 321);
 
         return testWeatherValues;
     }
@@ -152,14 +157,14 @@ class TestUtilities {
 
             ContentValues weatherValues = new ContentValues();
 
-            weatherValues.put(REFLECTED_COLUMN_DATE, normalizedTestDate);
-            weatherValues.put(REFLECTED_COLUMN_WIND_DIR, 1.1);
-            weatherValues.put(REFLECTED_COLUMN_HUMIDITY, 1.2 + 0.01 * (float) i);
-            weatherValues.put(REFLECTED_COLUMN_PRESSURE, 1.3 - 0.01 * (float) i);
-            weatherValues.put(REFLECTED_COLUMN_MAX, 75 + i);
-            weatherValues.put(REFLECTED_COLUMN_MIN, 65 - i);
-            weatherValues.put(REFLECTED_COLUMN_WIND_SPEED, 5.5 + 0.2 * (float) i);
-            weatherValues.put(REFLECTED_COLUMN_WEATHER_ID, 321);
+            weatherValues.put(COLUMN_DATE, normalizedTestDate);
+            weatherValues.put(COLUMN_DEGREES, 1.1);
+            weatherValues.put(COLUMN_HUMIDITY, 1.2 + 0.01 * (float) i);
+            weatherValues.put(COLUMN_PRESSURE, 1.3 - 0.01 * (float) i);
+            weatherValues.put(COLUMN_MAX_TEMP, 75 + i);
+            weatherValues.put(COLUMN_MIN_TEMP, 65 - i);
+            weatherValues.put(COLUMN_WIND_SPEED, 5.5 + 0.2 * (float) i);
+            weatherValues.put(COLUMN_WEATHER_ID, 321);
 
             bulkTestWeatherValues[i] = weatherValues;
         }

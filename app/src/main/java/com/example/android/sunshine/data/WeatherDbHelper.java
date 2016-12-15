@@ -32,7 +32,6 @@ public class WeatherDbHelper extends SQLiteOpenHelper {
      */
     public static final String DATABASE_NAME = "weather.db";
 
-//  COMPLETED (2) Increment the database version after changing the create table statement
     /*
      * If you change the database schema, you must increment the database version or the onUpgrade
      * method will not be called.
@@ -87,7 +86,6 @@ public class WeatherDbHelper extends SQLiteOpenHelper {
                 WeatherEntry.COLUMN_WIND_SPEED + " REAL NOT NULL, "                    +
                 WeatherEntry.COLUMN_DEGREES    + " REAL NOT NULL, "                    +
 
-//              COMPLETED (1) Add a UNIQUE constraint on the date column to replace on conflict
                 /*
                  * To ensure this table can only contain one weather entry per date, we declare
                  * the date column to be unique. We also specify "ON CONFLICT REPLACE". This tells
