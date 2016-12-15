@@ -15,7 +15,6 @@
  */
 package com.example.android.sunshine.utilities;
 
-import android.content.ContentValues;
 import android.content.Context;
 
 import org.json.JSONArray;
@@ -28,6 +27,35 @@ import java.net.HttpURLConnection;
  * Utility functions to handle OpenWeatherMap JSON data.
  */
 public final class OpenWeatherJsonUtils {
+
+    /* Location information */
+    private static final String OWM_CITY = "city";
+    private static final String OWM_CITY_NAME = "name";
+    private static final String OWM_COORD = "coord";
+
+    /* Location coordinate */
+    private static final String OWM_LATITUDE = "lat";
+    private static final String OWM_LONGITUDE = "lon";
+
+    /* Weather information. Each day's forecast info is an element of the "list" array */
+    private static final String OWM_LIST = "list";
+
+    private static final String OWM_PRESSURE = "pressure";
+    private static final String OWM_HUMIDITY = "humidity";
+    private static final String OWM_WINDSPEED = "speed";
+    private static final String OWM_WIND_DIRECTION = "deg";
+
+    /* All temperatures are children of the "temp" object */
+    private static final String OWM_TEMPERATURE = "temp";
+
+    /* Max temperature for the day */
+    private static final String OWM_MAX = "max";
+    private static final String OWM_MIN = "min";
+
+    private static final String OWM_WEATHER = "weather";
+    private static final String OWM_WEATHER_ID = "id";
+
+    private static final String OWM_MESSAGE_CODE = "cod";
 
     /**
      * This method parses JSON from a web response and returns an array of Strings
@@ -46,23 +74,7 @@ public final class OpenWeatherJsonUtils {
     public static String[] getSimpleWeatherStringsFromJson(Context context, String forecastJsonStr)
             throws JSONException {
 
-        /* Weather information. Each day's forecast info is an element of the "list" array */
-        final String OWM_LIST = "list";
-
-        /* All temperatures are children of the "temp" object */
-        final String OWM_TEMPERATURE = "temp";
-
-        /* Max temperature for the day */
-        final String OWM_MAX = "max";
-        final String OWM_MIN = "min";
-
-        final String OWM_WEATHER = "weather";
-        final String OWM_DESCRIPTION = "main";
-
-        final String OWM_MESSAGE_CODE = "cod";
-
-        /* String array to hold each day's weather String */
-        String[] parsedWeatherData = null;
+        String[] parsedWeatherData;
 
         JSONObject forecastJson = new JSONObject(forecastJsonStr);
 
@@ -86,9 +98,7 @@ public final class OpenWeatherJsonUtils {
 
         parsedWeatherData = new String[weatherArray.length()];
 
-        long localDate = System.currentTimeMillis();
-        long utcDate = SunshineDateUtils.getUTCDateFromLocal(localDate);
-        long startDay = SunshineDateUtils.normalizeDate(utcDate);
+        long startDay = SunshineDateUtils.getNormalizedUtcDateForToday();
 
         for (int i = 0; i < weatherArray.length(); i++) {
             String date;
@@ -98,6 +108,8 @@ public final class OpenWeatherJsonUtils {
             long dateTimeMillis;
             double high;
             double low;
+
+            int weatherId;
             String description;
 
             /* Get the JSON object representing the day */
@@ -116,7 +128,9 @@ public final class OpenWeatherJsonUtils {
              */
             JSONObject weatherObject =
                     dayForecast.getJSONArray(OWM_WEATHER).getJSONObject(0);
-            description = weatherObject.getString(OWM_DESCRIPTION);
+
+            weatherId = weatherObject.getInt(OWM_WEATHER_ID);
+            description = SunshineWeatherUtils.getStringForWeatherCondition(context, weatherId);
 
             /*
              * Temperatures are sent by Open Weather Map in a child object called "temp".
@@ -134,18 +148,5 @@ public final class OpenWeatherJsonUtils {
         }
 
         return parsedWeatherData;
-    }
-
-    /**
-     * Parse the JSON and convert it into ContentValues that can be inserted into our database.
-     *
-     * @param context         An application context, such as a service or activity context.
-     * @param forecastJsonStr The JSON to parse into ContentValues.
-     *
-     * @return An array of ContentValues parsed from the JSON.
-     */
-    public static ContentValues[] getFullWeatherDataFromJson(Context context, String forecastJsonStr) {
-        /** This will be implemented in a future lesson **/
-        return null;
     }
 }
