@@ -28,6 +28,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!--The manifest entry for our MainActivity. Each Activity requires a manifest entry-->
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -37,14 +38,18 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <!--The manifest entry for our DetailActivity. Each Activity requires a manifest entry-->
         <activity
             android:name=".DetailActivity"
+            android:label="@string/title_activity_detail"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
         </activity>
+
+        <!--The manifest entry for our SettingsActivity. Each Activity requires a manifest entry-->
         <activity android:name=".SettingsActivity"/>
     </application>
-
 </manifest>
