@@ -51,5 +51,8 @@
 
         <!--The manifest entry for our SettingsActivity. Each Activity requires a manifest entry-->
         <activity android:name=".SettingsActivity"/>
+
+        <!-- TODO (4) Register WeatherProvider in the manifest with the correct authorities -->
+
     </application>
 </manifest>

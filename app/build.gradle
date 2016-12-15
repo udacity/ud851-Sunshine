@@ -17,6 +17,8 @@ android {
             minifyEnabled false
         }
     }
+    productFlavors {
+    }
 }
 
 dependencies {
@@ -25,7 +27,6 @@ dependencies {
 
     compile 'com.android.support:recyclerview-v7:25.0.1'
     compile 'com.android.support:preference-v7:25.0.1'
-
     // Instrumentation dependencies use androidTestCompile
     // (as opposed to testCompile for local unit tests run in the JVM)
     androidTestCompile 'junit:junit:4.12'
