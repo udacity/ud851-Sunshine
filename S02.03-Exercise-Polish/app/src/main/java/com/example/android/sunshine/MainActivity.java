@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
      * background method to get the weather data in the background.
      */
     private void loadWeatherData() {
-        // TODO (20) Call showWeatherData before executing the AsyncTask
+        // TODO (20) Call showWeatherDataView before executing the AsyncTask
         String location = SunshinePreferences.getPreferredWeatherLocation(this);
         new FetchWeatherTask().execute(location);
     }
