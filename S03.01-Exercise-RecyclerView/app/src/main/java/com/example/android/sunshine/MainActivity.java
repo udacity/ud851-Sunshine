@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     // Within forecast_list_item.xml //////////////////////////////////////////////////////////////
 
 
-    // Within ForecastAdapter.xml /////////////////////////////////////////////////////////////////
+    // Within ForecastAdapter.java /////////////////////////////////////////////////////////////////
     // TODO (15) Add a class file called ForecastAdapter
     // TODO (22) Extend RecyclerView.Adapter<ForecastAdapter.ForecastAdapterViewHolder>
 
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO (31) Create a setWeatherData method that saves the weatherData to mWeatherData
     // TODO (32) After you save mWeatherData, call notifyDataSetChanged
-    // Within ForecastAdapter.xml /////////////////////////////////////////////////////////////////
+    // Within ForecastAdapter.java /////////////////////////////////////////////////////////////////
 
 
     // TODO (33) Delete mWeatherTextView
