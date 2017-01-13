@@ -24,7 +24,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.0'
 
     // TODO (10) Remove this dependency as we won't be needing it for the project until later
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
 
     // Instrumentation dependencies use androidTestCompile
     // (as opposed to testCompile for local unit tests run in the JVM)
