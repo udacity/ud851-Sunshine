@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--COMPLETED (2) Change the android:id attribute to tv_weather_data-->
+        <!--COMPLETED (2) Change the TextView's android:id attribute to tv_weather_data-->
         <!--COMPLETED (3) Give the TextView 16dp of padding-->
         <!--COMPLETED (4) Set the text size to 20sp-->
         <!--COMPLETED (5) Remove all attributes with the word constraint in them-->
