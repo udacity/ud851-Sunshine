@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:background="@drawable/ic_fog"
+    android:windowSoftInputMode="stateVisible|adjustPan"
+    android:layout_centerInParent="true">
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="38dp">
+
+        <TextView
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:text="Ime i Prezime"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/textView2" />
+        <RelativeLayout
+            android:background="@drawable/ic_fog"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" >
+            <Spinner
+                android:layout_height="40dp"
+                android:layout_width="300dp"
+                android:id="@+id/spinner3"
+                />
+
+        </RelativeLayout>
+        <TextView
+
+            android:layout_marginTop="8dp"
+            android:textSize="17sp"
+            android:text="Lozinka"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:id="@+id/textView"
+            android:height="@android:dimen/app_icon_size" />
+
+        <EditText
+
+            android:layout_marginTop="-3dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:inputType="textPassword"
+            android:id="@+id/lozinka"
+            android:background="@drawable/ic_clear"
+
+            />
+
+        <Button
+
+            android:layout_marginTop="8dp"
+            android:id="@+id/button1"
+            android:textAllCaps="false"
+            android:text="Prijava korisnika"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_rain"
+            />
+
+
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:src="@drawable/ic_snow"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+</RelativeLayout>
