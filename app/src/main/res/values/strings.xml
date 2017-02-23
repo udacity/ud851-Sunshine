@@ -24,7 +24,9 @@
     <!--or something similar.-->
     <string name="app_name">Sunshine</string>
 
-    <!--TODO (1) Add a string for the title of the refresh button, "Refresh"-->
+    <!--COMPLETED (1) Add a string for the title of the refresh button, "Refresh"-->
+    <!--Used in overflow menu to refresh weather data-->
+    <string name="action_refresh">Refresh</string>
 
 
     <!-- - - - - - - - - - - - - -->
