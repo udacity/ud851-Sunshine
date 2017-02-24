@@ -28,7 +28,7 @@
     <string name="action_refresh">Refresh</string>
 
     <!--TODO (1) Add a string resource for your error message-->
-
+    <string name ="error_message">Failed to get tesult. Please try again!</string>
 
     <!-- - - - - - - - - - - - - -->
     <!--Used by SunshineDateUtils-->
