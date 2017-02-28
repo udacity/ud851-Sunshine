@@ -248,8 +248,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.action_refresh) {
+            
             // TODO (46) Instead of setting the text to "", set the adapter to null before refreshing
             mForecastAdapter.setWeatherData(null);
             loadWeatherData();
