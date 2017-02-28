@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--COMPLETED (5) Add a layout for an item in the list called forecast_list_item.xml-->
+<!--
+ Copyright (C) 2016 The Android Open Source Project
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<!--COMPLETED (6) Make the root of the layout a vertical LinearLayout-->
+<!--COMPLETED (7) Set the width of the LinearLayout to match_parent and the height to wrap_content-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <!--COMPLETED (8) Add a TextView with an id @+id/tv_weather_data-->
+    <!--COMPLETED (9) Set the text size to 22sp-->
+    <!--COMPLETED (10) Make the width and height wrap_content-->
+    <!--COMPLETED (11) Give the TextView 16dp of padding-->
+    <!--This TextView holds the weather data for one particular day in the forecast-->
+    <TextView
+        android:id="@+id/tv_weather_data"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"/>
+
+    <!--COMPLETED (12) Add a View to the layout with a width of match_parent and a height of 1dp-->
+    <!--COMPLETED (13) Set the background color to #dadada-->
+    <!--COMPLETED (14) Set the left and right margins to 8dp-->
+    <!--This View serves as a visual divider between list items-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dadada"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" />
+
+</LinearLayout>
