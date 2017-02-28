@@ -24,7 +24,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.0'
 
     // TODO (1) Add RecyclerView dependency
-
+    compile 'com.android.support:recyclerview-v7:25.1.0'
     // Instrumentation dependencies use androidTestCompile
     // (as opposed to testCompile for local unit tests run in the JVM)
     androidTestCompile 'junit:junit:4.12'
