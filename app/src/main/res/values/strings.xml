@@ -29,7 +29,8 @@
     <string name="action_map">Map Location</string>
     <string name="action_share">Share</string>
 
-    <!--TODO (3) Add a string called action_settings with value of Settings-->
+    <!--COMPLETED (3) Add a string called action_settings with value of Settings-->
+    <string name="action_settings">Settings</string>
 
     <!--Used in overflow menu to refresh weather data-->
     <string name="action_refresh">Refresh</string>
