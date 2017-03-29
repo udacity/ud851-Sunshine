@@ -21,7 +21,7 @@
     android:layout_height="match_parent">
      <scrollview
                  android:layout_width="match_parent" 
-                 android:layout_height="wrap_content"/>
+                 android:layout_height="wrap_content">
                  
 
     <!--TODO (8) Wrap the TextView in a ScrollView-->
@@ -39,4 +39,5 @@
         android:text=""
         android:textview="20sp"
         />
+     </scrollview>
 </framelayout>
