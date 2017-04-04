@@ -49,7 +49,7 @@ private static UriMatcher sUriMatcher = buildUriMatcher();
 public static UriMatcher buildUriMatcher(){
     UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     uriMatcher.addURI(WeatherContract.CONTENT_AUTHORITY,
-            WeatherContract.PATH_WEATHER,100);
+            WeatherContract.PATH_WEATHER,CODE_WEATHER);
     uriMatcher.addURI(WeatherContract.CONTENT_AUTHORITY,
             WeatherContract.PATH_WEATHER +
                     "/#" ,CODE_WEATHER_WITH_DATE);
