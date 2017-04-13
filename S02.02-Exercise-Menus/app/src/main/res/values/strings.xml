@@ -26,7 +26,7 @@
 
     <!--TODO (1) Add a string for the title of the refresh button, "Refresh"-->
 
-
+    <string name="action_refresh">Refresh</string>
     <!-- - - - - - - - - - - - - -->
     <!--Used by SunshineDateUtils-->
     <!-- - - - - - - - - - - - - -->
