@@ -154,6 +154,19 @@ public final class SunshinePreferences {
 
         return spContainBothLatitudeAndLongitude;
     }
+    public static boolean areEnableNotification(Context context){
+
+        String keyForPreference = "notification";
+
+        boolean defaultSetting  = context.getResources().getBoolean(R.bool.bool);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+
+        boolean enableNotification = sp.getBoolean(keyForPreference,defaultSetting);
+
+        return enableNotification;
+
+    }
 
     /**
      * Returns the last time that a notification was shown (in UNIX time)

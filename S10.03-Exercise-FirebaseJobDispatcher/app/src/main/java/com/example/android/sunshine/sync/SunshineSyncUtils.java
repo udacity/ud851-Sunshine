@@ -20,16 +20,55 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.util.TimeUtils;
 
 import com.example.android.sunshine.data.WeatherContract;
+import com.firebase.jobdispatcher.Constraint;
+import com.firebase.jobdispatcher.FirebaseJobDispatcher;
+import com.firebase.jobdispatcher.GooglePlayDriver;
+import com.firebase.jobdispatcher.Job;
+import com.firebase.jobdispatcher.Lifetime;
+import com.firebase.jobdispatcher.Trigger;
+
+import java.util.concurrent.TimeUnit;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class SunshineSyncUtils {
 
 //  TODO (10) Add constant values to sync Sunshine every 3 - 4 hours
+    private static final int INTERVAL_TIME_HOUR = 3;
+
+    private static final int INTERVAL_TIME_SECONDS = (int) TimeUnit.HOURS.toSeconds(INTERVAL_TIME_HOUR);
+
+    private static final int FLEX_TIME_SECONDS = (int) TimeUnit.HOURS.toSeconds(1);
 
     private static boolean sInitialized;
 
+    private static final String SYNC_TAG = "weatherData-sync";
+
 //  TODO (11) Add a sync tag to identify our sync job
+
+    synchronized public static void scheduleWeatherSync(Context context){
+        if(sInitialized) return;
+
+        GooglePlayDriver driver = new GooglePlayDriver(context);
+
+        FirebaseJobDispatcher firebaseJobDispatcher = new FirebaseJobDispatcher(driver);
+
+        Job job = firebaseJobDispatcher.newJobBuilder().
+                setTag(SYNC_TAG).
+                setLifetime(Lifetime.FOREVER).
+                setTrigger(Trigger.executionWindow(INTERVAL_TIME_SECONDS,INTERVAL_TIME_SECONDS + FLEX_TIME_SECONDS)).
+                setReplaceCurrent(true).
+                setRecurring(true).
+                setConstraints(Constraint.ON_ANY_NETWORK).
+                build();
+
+        firebaseJobDispatcher.schedule(job);
+
+
+    }
 
 //  TODO (12) Create a method to schedule our periodic weather sync
 
@@ -49,6 +88,8 @@ public class SunshineSyncUtils {
         if (sInitialized) return;
 
         sInitialized = true;
+
+        scheduleWeatherSync(context);
 
 //      TODO (13) Call the method you created to schedule a periodic weather sync
 
