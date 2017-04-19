@@ -35,8 +35,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="16dp"
-    android:paddingTop="16dp">
+    android:paddingBottom="@dimen/list_item_date_left_margin"
+    android:paddingTop="@dimen/list_item_date_start_margin">
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
      - This Guideline divides the screen into a left half and a right half and is used to        -
@@ -49,7 +49,7 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5"
         tools:layout_editor_absoluteX="192dp"
-        tools:layout_editor_absoluteY="0dp"/>
+        tools:layout_editor_absoluteY="0dp" />
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
      - Today's date                                                                              -
@@ -75,8 +75,8 @@
     <!-- Icon indicating weather condition -->
     <ImageView
         android:id="@+id/weather_icon"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:layout_width="@dimen/list_icon"
+        android:layout_height="@dimen/list_icon"
         android:adjustViewBounds="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

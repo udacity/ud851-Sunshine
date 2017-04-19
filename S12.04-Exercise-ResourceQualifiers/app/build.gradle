@@ -12,6 +12,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -28,7 +29,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.0.1'
     compile 'com.android.support:preference-v7:25.0.1'
 
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta3'
+    compile 'com.android.support.constraint:constraint-layout:1.0.1'
 
     compile 'com.firebase:firebase-jobdispatcher:0.5.0'
 

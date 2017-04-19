@@ -25,6 +25,16 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
+    <style name="ActionBar_Solid_Sunshine_NoTitle">
+        <item name="android:label"></item>
+    </style>
+
+    <style name="AppTheme.Forecast" parent="ActionBar_Solid_Sunshine_NoTitle"></style>
+
+    <style name="DetailLabel"></style>
+
+    <style name="ExtraWeatherMeasurement"></style>
+
     <!-- TODO (1) Create a style that shows a Sunshine logo instead of a title -->
 
     <!-- TODO (2) Create a style for MainActivity called AppTheme.Forecast that uses our custom ActionBar style -->

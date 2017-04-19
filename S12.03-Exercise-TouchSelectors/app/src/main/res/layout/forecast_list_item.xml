@@ -28,7 +28,8 @@
     android:paddingBottom="@dimen/list_item_padding_vertical"
     android:paddingLeft="@dimen/list_item_padding_horizontal"
     android:paddingRight="@dimen/list_item_padding_horizontal"
-    android:paddingTop="@dimen/list_item_padding_vertical">
+    android:paddingTop="@dimen/list_item_padding_vertical"
+    android:background="@drawable/touch_selector">
 
     <ImageView
         android:id="@+id/weather_icon"
