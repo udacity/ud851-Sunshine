@@ -72,6 +72,7 @@ public final class NetworkUtils {
      */
     public static URL buildUrl(String locationQuery) {
         // COMPLETED (1) Fix this method to return the URL used to query Open Weather Map's API
+
         Uri weatherBuildUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
                 .appendQueryParameter(QUERY_PARAM, locationQuery)
                 .appendQueryParameter(FORMAT_PARAM,format)
@@ -84,9 +85,7 @@ public final class NetworkUtils {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
         Log.v(TAG, "Built URI " + locationUrl);
-
         return locationUrl;
     }
 
