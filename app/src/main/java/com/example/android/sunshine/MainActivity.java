@@ -42,31 +42,23 @@ public class MainActivity extends AppCompatActivity {
         mWeatherTextView = (TextView) findViewById(R.id.tv_weather_data);
 
         // COMPLETED (4) Delete the dummy weather data. You will be getting REAL data from the Internet in this lesson.
-
         // COMPLETED (3) Delete the for loop that populates the TextView with dummy data
-
         // COMPLETED (9) Call loadWeatherData to perform the network request to get the weather
-        /* Once all of our views are setup, we can load the weather data. */
         loadWeatherData();
     }
 
     // COMPLETED (8) Create a method that will get the user's preferred location and execute your new AsyncTask and call it loadWeatherData
-    /**
-     * This method will get the user's preferred location for weather, and then tell some
-     * background method to get the weather data in the background.
-     */
     private void loadWeatherData() {
         String location = SunshinePreferences.getPreferredWeatherLocation(this);
-        new FetchWeatherTask().execute(location);
+        new WeatherRequestClass().execute(location);
     }
 
     // COMPLETED (5) Create a class that extends AsyncTask to perform network requests
-    public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
+    class WeatherRequestClass extends AsyncTask<String, Void, String[]> {
 
         // COMPLETED (6) Override the doInBackground method to perform your network requests
         @Override
         protected String[] doInBackground(String... params) {
-
             /* If there's no zip code, there's nothing to look up. */
             if (params.length == 0) {
                 return null;
