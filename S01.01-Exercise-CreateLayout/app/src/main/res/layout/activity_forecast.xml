@@ -16,7 +16,7 @@
 -->
 <!--TODO (1) Change the ConstraintLayout to a FrameLayout-->
 <!--TODO (7) Remove the line that declares the id, we don't need it-->
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -39,4 +39,4 @@
         app:layout_constraintLeft_toLeftOf="@+id/activity_main"
         app:layout_constraintRight_toRightOf="@+id/activity_main"
         app:layout_constraintTop_toTopOf="@+id/activity_main" />
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>
