@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 The Android Open Source Project
+ * Copyright (C) 2016 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -143,6 +143,7 @@ public class TestSunshineDatabase {
             REFLECTED_COLUMN_WIND_DIR = getStaticStringField(weatherEntryClass, columnWindDirVariableName);
 
             weatherDbHelperClass = Class.forName(dataPackageName + weatherDbHelperName);
+
             Class weatherDbHelperSuperclass = weatherDbHelperClass.getSuperclass();
 
             if (weatherDbHelperSuperclass == null || weatherDbHelperSuperclass.equals(Object.class)) {
@@ -263,7 +264,7 @@ public class TestSunshineDatabase {
      * This method tests that our database contains all of the tables that we think it should
      * contain. Although in our case, we just have one table that we expect should be added
      * <p>
-     * {@link com.example.android.sunshine.data.TABLE_NAME}.
+     * {@link com.example.android.sunshine.data.WeatherContract.WeatherEntry#TABLE_NAME}.
      * <p>
      * Despite only needing to check one table name in Sunshine, we set this method up so that
      * you can use it in other apps to test databases with more than one table.
@@ -319,7 +320,7 @@ public class TestSunshineDatabase {
         assertTrue("Error: Your database was created without the expected tables.",
                 tableNameHashSet.isEmpty());
 
-        /* Always close a cursor when you are done with it */
+        /* Always close the cursor when you are finished with it */
         tableNameCursor.close();
     }
 
