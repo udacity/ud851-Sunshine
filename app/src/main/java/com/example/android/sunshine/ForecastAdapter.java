@@ -110,7 +110,6 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
 //      COMPLETED (6) Move the cursor to the appropriate position
         mCursor.moveToPosition(position);
 
-
         /*******************
          * Weather Summary *
          *******************/
@@ -186,7 +185,7 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
          * selected, and then call the onClick handler registered with this adapter, passing that
          * date.
          *
-         * @param v the View that was clicked
+         * @param v The View that was clicked
          */
         @Override
         public void onClick(View v) {
