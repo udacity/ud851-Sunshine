@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements
         /* Setting the adapter attaches it to the RecyclerView in our layout. */
         mRecyclerView.setAdapter(mForecastAdapter);
 
-//      TODO (18) Call the showLoading method
+//      TODO (18) Call the showLoading method (will be created later)
 
         /*
          * Ensures a loader is initialized and active. If the loader doesn't already exist, one is
