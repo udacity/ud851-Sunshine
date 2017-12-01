@@ -215,12 +215,12 @@ public class MainActivity extends AppCompatActivity implements
      */
     @Override
     public void onLoadFinished(Loader<String[]> loader, String[] data) {
-        mLoadingIndicator.setVisibility(View.INVISIBLE);
-        mForecastAdapter.setWeatherData(data);
+        mLoadingIndicator.setVisibility(View.INVISIBLE);        
         if (null == data) {
             showErrorMessage();
         } else {
             showWeatherDataView();
+            mForecastAdapter.setWeatherData(data);
         }
     }
 
