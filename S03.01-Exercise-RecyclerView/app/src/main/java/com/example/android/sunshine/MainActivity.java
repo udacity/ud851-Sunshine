@@ -117,9 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO (40) Use setHasFixedSize(true) on mRecyclerView to designate that all items in the list will have the same size
 
-        // TODO (41) set mForecastAdapter equal to a new ForecastAdapter
-
-        // TODO (42) Use mRecyclerView.setAdapter and pass in mForecastAdapter
+        
 
         /*
          * The ProgressBar that will indicate to the user that we are loading data. It will be
@@ -155,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
     private void showWeatherDataView() {
         /* First, make sure the error is invisible */
         mErrorMessageDisplay.setVisibility(View.INVISIBLE);
-        // TODO (43) Show mRecyclerView, not mWeatherTextView
+        // TODO (45) Show mRecyclerView, not mWeatherTextView
         /* Then, make sure the weather data is visible */
         mWeatherTextView.setVisibility(View.VISIBLE);
     }
@@ -214,7 +212,11 @@ public class MainActivity extends AppCompatActivity {
             mLoadingIndicator.setVisibility(View.INVISIBLE);
             if (weatherData != null) {
                 showWeatherDataView();
-                // TODO (45) Instead of iterating through every string, use mForecastAdapter.setWeatherData and pass in the weather data
+				// TODO (41) Check if mForecastAdapter is null, and set it equal to a new ForecastAdapter if it is.
+
+				// TODO (42) inside the null check use mRecyclerView.setAdapter and pass in mForecastAdapter
+				
+                // TODO (43) Instead of iterating through every string, use mForecastAdapter.setWeatherData and pass in the weather data
                 /*
                  * Iterate through the array and append the Strings to the TextView. The reason why we add
                  * the "\n\n\n" after the String is to give visual separation between each String in the
