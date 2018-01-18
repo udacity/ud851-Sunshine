@@ -14,22 +14,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!--
-FrameLayout is designed to block out an area on the screen
-to display a single item. Generally, FrameLayout should be used
-to hold a single child view, because it can be difficult to
-organize child views in a way that's scalable to different screen sizes
-without the children overlapping each other. You can, however add
-multiple children to a FrameLayout and control their position within
-the FrameLayout by assigning gravity to each child, using the
-android:layout_gravity attribue.
-
-Child views are drawn in a stack, with the most recently added
-child on top. The size of the FrameLayout is the size of its
-largest child (plus padding), visible or not (if the FrameLayout's
-parent permits). Views that are GONE are used for sizing only if
-setConsiderGoneChildrenWhenMeasuring() is set to true.
--->
 <!--TODO (1) Change the ConstraintLayout to a FrameLayout-->
 <!--TODO (7) Remove the line that declares the id, we don't need it-->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
