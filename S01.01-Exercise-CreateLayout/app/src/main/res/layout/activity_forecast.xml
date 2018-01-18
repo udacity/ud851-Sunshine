@@ -14,11 +14,26 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+<!--
+FrameLayout is designed to block out an area on the screen
+to display a single item. Generally, FrameLayout should be used
+to hold a single child view, because it can be difficult to
+organize child views in a way that's scalable to different screen sizes
+without the children overlapping each other. You can, however add
+multiple children to a FrameLayout and control their position within
+the FrameLayout by assigning gravity to each child, using the
+android:layout_gravity attribue.
+
+Child views are drawn in a stack, with the most recently added
+child on top. The size of the FrameLayout is the size of its
+largest child (plus padding), visible or not (if the FrameLayout's
+parent permits). Views that are GONE are used for sizing only if
+setConsiderGoneChildrenWhenMeasuring() is set to true.
+-->
 <!--TODO (1) Change the ConstraintLayout to a FrameLayout-->
 <!--TODO (7) Remove the line that declares the id, we don't need it-->
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -30,13 +45,15 @@
     <!--TODO (4) Set the text size to 20sp-->
     <!--TODO (5) Remove all attributes with the word constraint in them-->
     <!--TODO (6) Remove the default text from the TextView-->
-    <TextView
-        android:id="@+id/text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="@+id/activity_main"
-        app:layout_constraintLeft_toLeftOf="@+id/activity_main"
-        app:layout_constraintRight_toRightOf="@+id/activity_main"
-        app:layout_constraintTop_toTopOf="@+id/activity_main" />
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_weather_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:padding="16dp">
+        </TextView>
+    </ScrollView>
+</FrameLayout>
