@@ -27,7 +27,10 @@
     <!--Used in overflow menu to refresh weather data-->
     <string name="action_refresh">Refresh</string>
 
-    <!--TODO (1) Add a string resource for your error message-->
+    <!--COMPLETED (1) Add a string resource for your error message-->
+    <string name="error_message">
+        An error has occurred. Please try again by clicking REFRESH
+    </string>
 
 
     <!-- - - - - - - - - - - - - -->
