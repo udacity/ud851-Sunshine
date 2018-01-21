@@ -25,7 +25,7 @@
     <string name="app_name">Sunshine</string>
 
     <!--TODO (1) Add a string for the title of the refresh button, "Refresh"-->
-
+    <string name="refresh">Refresh</string>
 
     <!-- - - - - - - - - - - - - -->
     <!--Used by SunshineDateUtils-->
