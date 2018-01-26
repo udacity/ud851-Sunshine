@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
      * Hint: Hold Command on Mac or Control on Windows and click that link
      * to automagically open the Common Intents page
      */
-    private void openLocationInMap() {
+     private void openLocationInMap() {
         String addressString = "1600 Ampitheatre Parkway, CA";
         Uri geoLocation = Uri.parse("geo:0,0?q=" + addressString);
 
