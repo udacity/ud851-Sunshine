@@ -24,7 +24,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.0'
 
     compile 'com.android.support:recyclerview-v7:25.0.1'
-    // TODO (1) Add preferences dependency to gradle
+    // COMPLETED (1) Add preferences dependency to gradle
+    compile 'com.android.support:preference-v7:25.0.1'
 
     // Instrumentation dependencies use androidTestCompile
     // (as opposed to testCompile for local unit tests run in the JVM)
