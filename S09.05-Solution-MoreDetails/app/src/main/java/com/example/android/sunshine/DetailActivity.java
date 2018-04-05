@@ -260,7 +260,7 @@ public class DetailActivity extends AppCompatActivity implements
             return;
         }
 
-//      COMPLETED (26) Display a readable data string
+//      COMPLETED (26) Display a readable date string
         /****************
          * Weather Date *
          ****************/
