@@ -25,4 +25,10 @@
         android:title="@string/action_refresh"
         app:showAsAction="ifRoom"/>
     <!--TODO (1) Add a menu item to open the map-->
+
+    <item
+        android:title="@string/action_share"
+        android:id="@+id/action_share"
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom"/>
 </menu>

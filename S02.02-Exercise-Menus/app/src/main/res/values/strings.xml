@@ -25,7 +25,8 @@
     <string name="app_name">Sunshine</string>
 
     <!--TODO (1) Add a string for the title of the refresh button, "Refresh"-->
-
+    <string name="action_refresh">Refresh</string>
+    <string name="error_message">Error fetching data</string>
 
     <!-- - - - - - - - - - - - - -->
     <!--Used by SunshineDateUtils-->

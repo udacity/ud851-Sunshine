@@ -15,9 +15,14 @@
  */
 package com.example.android.sunshine;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.android.sunshine.data.SunshinePreferences;
@@ -29,7 +34,8 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     private TextView mWeatherTextView;
-
+    private TextView mErrorMessageTextView;
+    private ProgressBar mProgressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
          * do things like set the text of the TextView.
          */
         mWeatherTextView = (TextView) findViewById(R.id.tv_weather_data);
-
+        mErrorMessageTextView = (TextView) findViewById(R.id.tv_error_message);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
         /* Once all of our views are setup, we can load the weather data. */
         loadWeatherData();
     }
@@ -54,7 +61,26 @@ public class MainActivity extends AppCompatActivity {
         new FetchWeatherTask().execute(location);
     }
 
+    private void displayError() {
+        mProgressBar.setVisibility(View.INVISIBLE);
+        mErrorMessageTextView.setVisibility(View.VISIBLE);
+        mWeatherTextView.setVisibility(View.INVISIBLE);
+    }
+
+    private void displayData() {
+        mProgressBar.setVisibility(View.INVISIBLE);
+        mErrorMessageTextView.setVisibility(View.INVISIBLE);
+        mWeatherTextView.setVisibility(View.VISIBLE);
+    }
+
+    @SuppressLint("StaticFieldLeak")
     public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
 
         @Override
         protected String[] doInBackground(String... params) {
@@ -92,7 +118,10 @@ public class MainActivity extends AppCompatActivity {
                  */
                 for (String weatherString : weatherData) {
                     mWeatherTextView.append((weatherString) + "\n\n\n");
+                    displayData();
                 }
+            } else {
+                displayError();
             }
         }
     }
@@ -102,7 +131,23 @@ public class MainActivity extends AppCompatActivity {
     // TODO (4) Set the title of the menu item to "Refresh" using strings.xml
 
     // TODO (5) Override onCreateOptionsMenu to inflate the menu for this Activity
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.forecast,menu);
+        return true;
+    }
+
     // TODO (6) Return true to display the menu
 
     // TODO (7) Override onOptionsItemSelected to handle clicks on the refresh button
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_refresh) {
+            mWeatherTextView.setText("");
+            loadWeatherData();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
