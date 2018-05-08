@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:orientation="vertical"
+   android:padding="16dp"
+   tools:context="com.example.android.exampleapp.MainActivity">
+
+
+   <EditText
+       android:id="@+id/edit_text_name_input"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="@color/colorAccent"
+       android:hint="Enter your name"
+       android:padding="4dp"
+       android:textSize="24sp" />
+
+
+   <TextView
+       android:id="@+id/text_view_name_display"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center"
+       android:layout_marginTop="8dp"
+       android:text="Your name appears here"
+       android:textSize="30sp" />
+</LinearLayout>
