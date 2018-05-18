@@ -42,7 +42,9 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     // TODO (28) Set the text of the TextView to the weather for this list item's position
     @Override
     public void onBindViewHolder(ForecastAdapterViewHolder holder, int position) {
-        holder.mWeatherTextView.setText("" + position);
+        String weatherData = mWeatherData[position];
+
+        holder.mWeatherTextView.setText(weatherData);
     }
 
     // TODO (29) Override getItemCount
