@@ -194,6 +194,8 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
         startActivity(intentToStartDetailActivity);
     }
 
+
+
     /**
      * This method will make the View for the weather data visible and
      * hide the error message.
