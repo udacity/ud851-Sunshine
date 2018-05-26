@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    // TODO (6) Make the root of the layout a vertical LinearLayout
+    // TODO (7) Set the width of the LinearLayout to match_parent and the height to wrap_content
+    -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--
+     // TODO (8) Add a TextView with an id @+id/tv_weather_data
+    // TODO (9) Set the text size to 22sp
+    // TODO (10) Make the width and height wrap_content
+    // TODO (11) Give the TextView 16dp of padding
+     -->
+    <TextView
+        android:id="@+id/tv_weather_data"
+        android:textSize="22sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"/>
+
+    <!--
+    // TODO (12) Add a View to the layout with a width of match_parent and a height of 1dp
+    // TODO (13) Set the background color to #dadada
+    // TODO (14) Set the left and right margins to 8dp
+    -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dadada"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"/>
+
+</LinearLayout>
