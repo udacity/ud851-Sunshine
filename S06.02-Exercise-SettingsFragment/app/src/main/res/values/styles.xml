@@ -22,7 +22,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!--TODO (6) Add preferenceTheme to AppTheme and set to @style/PreferenceThemeOverlay-->
+        <!--COMPLETED (6) Add preferenceTheme to AppTheme and set to @style/PreferenceThemeOverlay-->
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
 </resources>
