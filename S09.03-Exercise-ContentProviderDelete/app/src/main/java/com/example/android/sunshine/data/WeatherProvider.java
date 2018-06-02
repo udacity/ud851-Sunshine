@@ -293,7 +293,7 @@ public class WeatherProvider extends ContentProvider {
         return cursor;
     }
 
-//  TODO (1) Implement the delete method of the ContentProvider
+//  COMPLETED (1) Implement the delete method of the ContentProvider
     /**
      * Deletes data at a given URI with optional arguments for more fine tuned deletions.
      *
@@ -304,11 +304,41 @@ public class WeatherProvider extends ContentProvider {
      */
     @Override
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
-        throw new RuntimeException("Student, you need to implement the delete method!");
+        //throw new RuntimeException("Student, you need to implement the delete method!");
+        final SQLiteDatabase database = mOpenHelper.getWritableDatabase();
+        int deletedRowsCounter = 0;
+        switch (sUriMatcher.match(uri)) {
 
-//          TODO (2) Only implement the functionality, given the proper URI, to delete ALL rows in the weather table
+//          COMPLETED (2) Only implement the functionality, given the proper URI, to delete ALL rows in the weather table
+            case CODE_WEATHER:
+                database.beginTransaction();
+                try {
+                    deletedRowsCounter = database.delete(WeatherContract.WeatherEntry.TABLE_NAME, null, null);
+                    database.setTransactionSuccessful();
+                } finally {
+                    database.endTransaction();
 
-//      TODO (3) Return the number of rows deleted
+                }
+                break;
+            case CODE_WEATHER_WITH_DATE:
+                database.beginTransaction();
+                try {
+                    if (selection != null && selectionArgs != null){
+                        deletedRowsCounter = database.delete(WeatherContract.WeatherEntry.TABLE_NAME,selection, selectionArgs);
+                        database.setTransactionSuccessful();
+                    } else {
+                        String date = uri.getLastPathSegment();
+                        String[] dateArgs = new String[]{date};
+                        deletedRowsCounter = database.delete(WeatherContract.WeatherEntry.TABLE_NAME, WeatherContract.WeatherEntry.COLUMN_DATE + " = ?",dateArgs);
+                        database.setTransactionSuccessful();
+                    }
+                } finally {
+                    database.endTransaction();
+                }
+                break;
+        }
+//      COMPLETED (3) Return the number of rows deleted
+        return deletedRowsCounter;
     }
 
     /**
