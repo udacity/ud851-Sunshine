@@ -18,9 +18,12 @@ package com.example.android.sunshine.data;
 import android.annotation.TargetApi;
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import com.example.android.sunshine.data.WeatherContract.WeatherEntry;
 
 /**
  * This class serves as the ContentProvider for all of Sunshine's data. This class allows us to
@@ -34,21 +37,31 @@ import android.support.annotation.NonNull;
  */
 public class WeatherProvider extends ContentProvider {
 
-//  TODO (5) Create static constant integer values named CODE_WEATHER & CODE_WEATHER_WITH_DATE to identify the URIs this ContentProvider can handle
+//  COMPLETED (5) Create static constant integer values named CODE_WEATHER & CODE_WEATHER_WITH_DATE to identify the URIs this ContentProvider can handle
+    private static final int CODE_WEATHER = 100;
+    private static final int CODE_WEATHER_WITH_DATE = 101;
 
-//  TODO (7) Instantiate a static UriMatcher using the buildUriMatcher method
+    //  COMPLETED (7) Instantiate a static UriMatcher using the buildUriMatcher method
+    private static UriMatcher mUriMatcher = buildUriMatcher();
 
-    WeatherDbHelper mOpenHelper;
+    private WeatherDbHelper mOpenHelper;
+    private SQLiteDatabase mDatabase;
 
-//  TODO (6) Write a method called buildUriMatcher where you match URI's to their numeric ID
-
-//  TODO (1) Implement onCreate
+    //  COMPPLETED (6) Write a method called buildUriMatcher where you match URI's to their numeric ID
+    public static UriMatcher buildUriMatcher(){
+        UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+        uriMatcher.addURI("com.example.android.sunshine.provider","weather", CODE_WEATHER);
+        uriMatcher.addURI("com.example.android.sunshine.provider","weather/#", CODE_WEATHER_WITH_DATE);
+        return uriMatcher;
+    }
+//  COMPLETED (1) Implement onCreate
     @Override
     public boolean onCreate() {
-//      TODO (2) Within onCreate, instantiate our mOpenHelper
-
-//      TODO (3) Return true from onCreate to signify success performing setup
-        return false;
+//      COMPLETED (2) Within onCreate, instantiate our mOpenHelper
+        mOpenHelper = new WeatherDbHelper(this.getContext());
+//      COMPLETED (3) Return true from onCreate to signify success performing setup
+        mDatabase = mOpenHelper.getReadableDatabase();
+        return mDatabase.isOpen();
     }
 
     /**
@@ -69,7 +82,7 @@ public class WeatherProvider extends ContentProvider {
         throw new RuntimeException("Student, you need to implement the bulkInsert mehtod!");
     }
 
-//  TODO (8) Provide an implementation for the query method
+//  COMPLETED (8) Provide an implementation for the query method
     /**
      * Handles query requests from clients. We will use this method in Sunshine to query for all
      * of our weather data as well as to query for the weather on a particular day.
@@ -88,11 +101,45 @@ public class WeatherProvider extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        throw new RuntimeException("Student, implement the query method!");
 
-//      TODO (9) Handle queries on both the weather and weather with date URI
+        //throw new RuntimeException("Student, implement the query method!");
+//      COMPLETED (9) Handle queries on both the weather and weather with date URI
+        int match = mUriMatcher.match(uri);
+        Cursor cursor = null;
+        String SQL_STATEMENT_FOR_WEATHER = "SELECT "        +
+                WeatherEntry._ID               + " , "      +
 
-//      TODO (10) Call setNotificationUri on the cursor and then return the cursor
+                WeatherEntry.COLUMN_WEATHER_ID + " ,"       +
+
+                WeatherEntry.COLUMN_MIN_TEMP   + " , "      +
+                WeatherEntry.COLUMN_MAX_TEMP   + " , "      +
+
+                WeatherEntry.COLUMN_HUMIDITY   + " , "      +
+                WeatherEntry.COLUMN_PRESSURE   + " , "      +
+
+                WeatherEntry.COLUMN_WIND_SPEED + " , "      +
+                WeatherEntry.COLUMN_DEGREES    + " FROM " +
+                WeatherEntry.TABLE_NAME;
+
+        String SQL_STATEMENT_FOR_WEATHER_WITH_DATA = "SELECT * FROM " +
+                WeatherEntry.TABLE_NAME;
+
+        switch (match){
+            case CODE_WEATHER:
+                cursor = mDatabase.rawQuery(SQL_STATEMENT_FOR_WEATHER, selectionArgs);
+                break;
+            case CODE_WEATHER_WITH_DATE:
+                cursor = mDatabase.rawQuery(SQL_STATEMENT_FOR_WEATHER_WITH_DATA, selectionArgs); //mDatabase.query("weather",projection, selection,selectionArgs,null, null,sortOrder);
+                break;
+            default:
+                break;
+        }
+
+//      COMPLETED (10) Call setNotificationUri on the cursor and then return the cursor
+        if (cursor != null){
+            cursor.setNotificationUri(this.getContext().getContentResolver(), uri);
+        }
+        return cursor;
     }
 
     /**
@@ -156,4 +203,5 @@ public class WeatherProvider extends ContentProvider {
         mOpenHelper.close();
         super.shutdown();
     }
+
 }
