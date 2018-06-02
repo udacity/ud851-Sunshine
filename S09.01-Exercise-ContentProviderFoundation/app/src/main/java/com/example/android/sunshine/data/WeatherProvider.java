@@ -21,6 +21,7 @@ import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import com.example.android.sunshine.data.WeatherContract.WeatherEntry;
@@ -50,8 +51,8 @@ public class WeatherProvider extends ContentProvider {
     //  COMPPLETED (6) Write a method called buildUriMatcher where you match URI's to their numeric ID
     public static UriMatcher buildUriMatcher(){
         UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI("com.example.android.sunshine.provider","weather", CODE_WEATHER);
-        uriMatcher.addURI("com.example.android.sunshine.provider","weather/#", CODE_WEATHER_WITH_DATE);
+        uriMatcher.addURI(/*key these consistence in case of authoty change*/WeatherContract.CONTENT_AUTHORITY ,WeatherEntry.TABLE_NAME, CODE_WEATHER);
+        uriMatcher.addURI(/*key these consistence in case of authoty change*/WeatherContract.CONTENT_AUTHORITY ,WeatherEntry.TABLE_NAME + "/#", CODE_WEATHER_WITH_DATE);
         return uriMatcher;
     }
 //  COMPLETED (1) Implement onCreate
@@ -106,30 +107,23 @@ public class WeatherProvider extends ContentProvider {
 //      COMPLETED (9) Handle queries on both the weather and weather with date URI
         int match = mUriMatcher.match(uri);
         Cursor cursor = null;
-        String SQL_STATEMENT_FOR_WEATHER = "SELECT "        +
-                WeatherEntry._ID               + " , "      +
-
-                WeatherEntry.COLUMN_WEATHER_ID + " ,"       +
-
-                WeatherEntry.COLUMN_MIN_TEMP   + " , "      +
-                WeatherEntry.COLUMN_MAX_TEMP   + " , "      +
-
-                WeatherEntry.COLUMN_HUMIDITY   + " , "      +
-                WeatherEntry.COLUMN_PRESSURE   + " , "      +
-
-                WeatherEntry.COLUMN_WIND_SPEED + " , "      +
-                WeatherEntry.COLUMN_DEGREES    + " FROM " +
-                WeatherEntry.TABLE_NAME;
-
-        String SQL_STATEMENT_FOR_WEATHER_WITH_DATA = "SELECT * FROM " +
-                WeatherEntry.TABLE_NAME;
 
         switch (match){
             case CODE_WEATHER:
-                cursor = mDatabase.rawQuery(SQL_STATEMENT_FOR_WEATHER, selectionArgs);
+                cursor = mDatabase.query(
+                        WeatherEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
                 break;
             case CODE_WEATHER_WITH_DATE:
-                cursor = mDatabase.rawQuery(SQL_STATEMENT_FOR_WEATHER_WITH_DATA, selectionArgs); //mDatabase.query("weather",projection, selection,selectionArgs,null, null,sortOrder);
+
+                String[] dateArgs =  selectionArgs == null || selectionArgs.equals("")? new String[]{ uri.getLastPathSegment()}: null;
+                cursor = mDatabase.query("weather",projection, WeatherEntry.COLUMN_DATE + " =?",dateArgs,null, null,sortOrder);
                 break;
             default:
                 break;

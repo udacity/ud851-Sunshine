@@ -54,7 +54,7 @@
 
         <!-- COMPLETED (4) Register WeatherProvider in the manifest with the correct authorities -->
         <provider
-            android:authorities="com.example.android.sunshine.provider"
+            android:authorities="com.example.android.sunshine"
             android:name=".data.WeatherProvider"
             android:exported="true" />
 
