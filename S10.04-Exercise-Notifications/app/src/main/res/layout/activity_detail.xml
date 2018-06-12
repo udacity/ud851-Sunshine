@@ -20,7 +20,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="16dp">
 
 
     <TextView
@@ -28,7 +28,10 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Saturday, September 24"/>
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
+        android:textSize="24sp"
+        tools:text="Saturday, September 24" />
 
     <!-- Text that describes weather condition -->
     <TextView
@@ -36,15 +39,20 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Rainy"/>
+        android:layout_marginBottom="8dp"
+        tools:text="Rainy" />
 
     <!-- High temperature for today -->
     <TextView
         android:id="@+id/high_temperature"
         style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
+        android:layout_width="66dp"
         android:layout_height="wrap_content"
-        tools:text="19\u00b0"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="42sp"
+        tools:text="19\u00b0" />
 
     <!-- Low temperature for today -->
     <TextView
@@ -52,7 +60,10 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="10\u00b0"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:textSize="32sp"
+        tools:text="10\u00b0" />
 
     <!-- Humidity  -->
     <TextView
@@ -60,7 +71,9 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="38%"/>
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        tools:text="38%" />
 
     <!-- Pressure  -->
     <TextView
@@ -68,7 +81,8 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="995 hPa"/>
+        android:layout_marginBottom="8dp"
+        tools:text="995 hPa" />
 
     <!-- Wind  -->
     <TextView
@@ -76,6 +90,7 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="4km/h NW"/>
+        android:layout_marginBottom="8dp"
+        tools:text="4km/h NW" />
 
 </LinearLayout>
