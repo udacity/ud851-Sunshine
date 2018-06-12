@@ -68,7 +68,7 @@
         <service android:name=".sync.SunshineFirebaseJobService"
             android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.ACTION_EXECUTE" />
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
     </application>
