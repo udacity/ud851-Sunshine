@@ -118,7 +118,7 @@ public final class NetworkUtils {
      * @return The Url to use to query the weather server.
      */
     private static URL buildUrlWithLatitudeLongitude(Double latitude, Double longitude) {
-        Uri weatherQueryUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
+        Uri weatherQueryUri = Uri.parse(DYNAMIC_WEATHER_URL/*FORECAST_BASE_URL*/).buildUpon()
                 .appendQueryParameter(LAT_PARAM, String.valueOf(latitude))
                 .appendQueryParameter(LON_PARAM, String.valueOf(longitude))
                 .appendQueryParameter(FORMAT_PARAM, format)

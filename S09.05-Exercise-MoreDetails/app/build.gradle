@@ -27,6 +27,9 @@ dependencies {
 
     implementation 'com.android.support:recyclerview-v7:25.4.0'
     implementation 'com.android.support:preference-v7:25.4.0'
+
+    /*Implement ROOM, ViewModel, LiveData*/
+
     // Instrumentation dependencies use androidTestCompile
     // (as opposed to testCompile for local unit tests run in the JVM)
     androidTestImplementation 'junit:junit:4.12'
