@@ -14,28 +14,89 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!-- TODO (2) Remove the old layout -->
-<!-- TODO (3) Use ConstraintLayout to create the new list item layout -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- COMPLETED (2) Remove the old layout -->
+<!-- COMPLETED (3) Use ConstraintLayout to create the new list item layout -->
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
     <!-- This TextView holds the weather data for one particular day in the forecast -->
-    <TextView
-        android:id="@+id/tv_weather_data"
+    <ImageView
+        android:id="@+id/imgv_weather_icon"
         style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/art_clouds" />
+
+    <TextView
+        android:id="@+id/tv_weather_date"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="144dp"
         android:layout_height="wrap_content"
-        android:padding="16dp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/imgv_weather_icon"
+        app:layout_constraintTop_toTopOf="@+id/imgv_weather_icon"
+        tools:text="Wednesday, Jun 13" />
+
+    <TextView
+        android:id="@+id/tv_weather_desc"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_weather_date"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="@+id/tv_weather_date"
+        app:layout_constraintTop_toBottomOf="@+id/tv_weather_date"
+        tools:text="@string/condition_901" />
+
+    <TextView
+        android:id="@+id/tv_weather_max_temp"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="48dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgv_weather_icon"
+        app:layout_constraintEnd_toStartOf="@+id/tv_weather_min_temp"
+        app:layout_constraintTop_toTopOf="@+id/imgv_weather_icon"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/tv_weather_min_temp"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="48dp"
+        android:layout_height="0dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgv_weather_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgv_weather_icon" />
 
     <!-- This View serves as a visual divider between list items -->
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="#dadada"/>
+        android:background="#dadada" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
