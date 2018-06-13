@@ -147,6 +147,7 @@ public class WeatherProvider extends ContentProvider {
             case CODE_WEATHER:
                 db.beginTransaction();
                 int rowsInserted = 0;
+
                 try {
                     for (ContentValues value : values) {
                         long weatherDate =

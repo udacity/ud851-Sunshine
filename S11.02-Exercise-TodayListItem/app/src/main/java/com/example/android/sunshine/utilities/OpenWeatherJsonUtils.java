@@ -17,6 +17,8 @@ package com.example.android.sunshine.utilities;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 import com.example.android.sunshine.data.SunshinePreferences;
 import com.example.android.sunshine.data.WeatherContract;
@@ -74,6 +76,7 @@ public final class OpenWeatherJsonUtils {
      *
      * @throws JSONException If JSON data cannot be properly parsed
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static ContentValues[] getWeatherContentValuesFromJson(Context context, String forecastJsonStr)
             throws JSONException {
 
@@ -96,6 +99,7 @@ public final class OpenWeatherJsonUtils {
         }
 
         JSONArray jsonWeatherArray = forecastJson.getJSONArray(OWM_LIST);
+        //jsonWeatherArray.remove(0);
 
         JSONObject cityJson = forecastJson.getJSONObject(OWM_CITY);
 

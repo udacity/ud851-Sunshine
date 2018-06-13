@@ -285,7 +285,7 @@ public final class SunshineDateUtils {
      *
      * @return the string day of the week
      */
-    private static String getDayName(Context context, long dateInMillis) {
+    public static String getDayName(Context context, long dateInMillis) {
         /*
          * If the date is today, return the localized version of "Today" instead of the actual
          * day name.
@@ -294,15 +294,18 @@ public final class SunshineDateUtils {
         long daysFromEpochToToday = elapsedDaysSinceEpoch(System.currentTimeMillis());
 
         int daysAfterToday = (int) (daysFromEpochToProvidedDate - daysFromEpochToToday);
-
+        SimpleDateFormat dayFormat = new SimpleDateFormat("MMMM d");;
         switch (daysAfterToday) {
             case 0:
-                return context.getString(R.string.today);
+                return context.getString(R.string.today) + ", " +dayFormat.format(dateInMillis);
             case 1:
                 return context.getString(R.string.tomorrow);
-
             default:
-                SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");
+                if (daysAfterToday < 7) {
+                    dayFormat = new SimpleDateFormat("EEEE");
+                } else {
+                    dayFormat = new SimpleDateFormat("EEEE, MMM d");
+                }
                 return dayFormat.format(dateInMillis);
         }
     }
