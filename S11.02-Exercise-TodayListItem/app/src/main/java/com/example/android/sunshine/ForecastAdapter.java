@@ -105,7 +105,7 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
         View view;
 //      COMPLETED (12) If the view type of the layout is today, use today layout
         if (viewType == TODAY_LIST_ITEM_VIEW_TYPE_ID){
-            view = LayoutInflater.from(mContext).inflate(R.layout.list_item_forecast_today, viewGroup);
+            view = LayoutInflater.from(mContext).inflate(R.layout.list_item_forecast_today, viewGroup, false);
             return new ForecastAdapterViewHolder(view);
         }
         //      COMPLETED (13) If the view type of the layout is future day, use future day layout
