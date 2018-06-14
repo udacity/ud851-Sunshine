@@ -15,9 +15,9 @@
      limitations under the License.
 -->
 
-<!-- TODO (1) Create a touch selector called touch_selector for the list item -->
+<!-- COMPLETED (1) Create a touch selector called touch_selector for the list item -->
 
-<!-- TODO (2) Use touch_selector as the background for the list item -->
+<!-- COMPLETED (2) Use touch_selector as the background for the list item -->
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,6 +25,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
+    android:background="@drawable/touch_selector"
     android:paddingBottom="@dimen/list_item_padding_vertical"
     android:paddingLeft="@dimen/list_item_padding_horizontal"
     android:paddingRight="@dimen/list_item_padding_horizontal"

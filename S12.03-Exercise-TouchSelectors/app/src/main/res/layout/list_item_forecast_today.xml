@@ -26,16 +26,16 @@
   - but again, we wanted to avoid making things too complicated.                                 -
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<!-- TODO (3) Create a touch selector called today_touch_selector for the today list item layout -->
+<!-- COMPLETED (3) Create a touch selector called today_touch_selector for the today list item layout -->
 
-<!-- TODO (4) Replace the background color for the today list item with today_touch_selector -->
+<!-- COMPLETED (4) Replace the background color for the today list item with today_touch_selector -->
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/today_touch_selector"
     android:paddingBottom="@dimen/today_forecast_list_item_vertical_padding"
     android:paddingTop="@dimen/today_forecast_list_item_vertical_padding">
 
