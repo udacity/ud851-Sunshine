@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor>,
         ForecastAdapter.ForecastAdapterOnClickHandler {
 
-//  TODO (2) Add dimens.xml, create and use dimensions for Sunshine's layouts
+//  COMPLETED (2) Add dimens.xml, create and use dimensions for Sunshine's layouts
 
     private final String TAG = MainActivity.class.getSimpleName();
 

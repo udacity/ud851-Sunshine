@@ -69,8 +69,8 @@
         <!-- Icon indicating weather condition -->
         <ImageView
             android:id="@+id/weather_icon"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+            android:layout_width="@dimen/today_icon"
+            android:layout_height="@dimen/today_icon"
             android:adjustViewBounds="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
