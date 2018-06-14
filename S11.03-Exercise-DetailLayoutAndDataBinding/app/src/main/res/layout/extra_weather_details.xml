@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Humidity  -->
+        <TextView
+            android:id="@+id/humidity_label"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/guideline_extras_label"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/humidity_label"/>
+        <TextView
+            android:id="@+id/humidity"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/guideline_extras"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="38%" />
+
+
+
+        <!-- Pressure  -->
+        <TextView
+            android:id="@+id/pressure_label"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/guideline_extras_label"
+            app:layout_constraintTop_toBottomOf="@+id/humidity_label"
+            android:text="@string/pressure_label"/>
+        <TextView
+            android:id="@+id/pressure"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/guideline_extras"
+            app:layout_constraintTop_toBottomOf="@+id/humidity"
+            tools:text="995 hPa" />
+
+
+        <!-- Wind  -->
+        <TextView
+            android:id="@+id/wind_label"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/guideline_extras_label"
+            app:layout_constraintTop_toBottomOf="@+id/pressure_label"
+            android:text="@string/wind_label"/>
+        <TextView
+            android:id="@+id/wind"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/guideline_extras"
+            app:layout_constraintTop_toBottomOf="@+id/pressure"
+            tools:text="4km/h NW" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_extras_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="152dp"
+            android:layout_marginStart="24dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="24dp"/>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_extras"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="128dp" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
