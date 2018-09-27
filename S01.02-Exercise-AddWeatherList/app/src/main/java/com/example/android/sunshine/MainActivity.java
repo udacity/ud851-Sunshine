@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forecast);
 
         weatherTextView = (TextView) findViewById(R.id.tv_weather_data);
-
-        // TODO (3) Create an array of Strings that contain fake weather data
+        String[] weatherData = { "Fog", "Cloud", "Rain", "Snow", "Tornado", "Blizzard", "Wind" };
 
         // TODO (4) Append each String from the fake weather data array to the TextView
     }
