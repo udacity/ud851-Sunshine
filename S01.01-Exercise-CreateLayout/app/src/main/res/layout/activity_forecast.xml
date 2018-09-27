@@ -26,13 +26,12 @@
     <!--TODO (9) Set the ScrollView width to match_parent and the height to wrap_content-->
 
     <!--TODO (6) Remove the default text from the TextView-->
-    <TextView
-        android:id="@+id/text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
 </android.support.constraint.ConstraintLayout></FrameLayout>
+        <TextView
             android:id="@+id/tv_weather_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
             android:padding="16dp"
             android:textSize="20sp" />
 </FrameLayout>
