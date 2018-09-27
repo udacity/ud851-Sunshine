@@ -25,7 +25,6 @@
     <!--TODO (8) Wrap the TextView in a ScrollView-->
     <!--TODO (9) Set the ScrollView width to match_parent and the height to wrap_content-->
 
-    <!--TODO (4) Set the text size to 20sp-->
     <!--TODO (5) Remove all attributes with the word constraint in them-->
     <!--TODO (6) Remove the default text from the TextView-->
     <TextView
@@ -40,5 +39,6 @@
 </android.support.constraint.ConstraintLayout></FrameLayout>
             android:id="@+id/tv_weather_data"
             android:padding="16dp"
+            android:textSize="20sp" />
 </FrameLayout>
 
