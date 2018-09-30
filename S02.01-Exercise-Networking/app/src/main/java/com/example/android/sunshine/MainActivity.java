@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.example.android.sunshine.data.SunshinePreferences;
 import com.example.android.sunshine.utilities.NetworkUtils;
 
 import java.io.IOException;
@@ -37,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
 
         mWeatherTextView = (TextView) findViewById(R.id.tv_weather_data);
 
+        String searchQuery = SunshinePreferences.getPreferredWeatherLocation(this);
+        loadWeatherData(searchQuery);
+    }
 
-        // TODO (9) Call loadWeatherData to perform the network request to get the weather
     private void loadWeatherData(String searchQuery) {
         URL searchURL = NetworkUtils.buildUrl(searchQuery);
         new FetchWeatherTask().execute(searchURL);
