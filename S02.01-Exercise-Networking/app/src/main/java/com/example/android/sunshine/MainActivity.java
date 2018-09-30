@@ -39,9 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         // TODO (9) Call loadWeatherData to perform the network request to get the weather
+    private void loadWeatherData(String searchQuery) {
+        URL searchURL = NetworkUtils.buildUrl(searchQuery);
+        new FetchWeatherTask().execute(searchURL);
     }
 
-    // TODO (8) Create a method that will get the user's preferred location and execute your new AsyncTask and call it loadWeatherData
     class FetchWeatherTask extends AsyncTask<URL, Void, String> {
         @Override
         protected String doInBackground(URL... urls) {
