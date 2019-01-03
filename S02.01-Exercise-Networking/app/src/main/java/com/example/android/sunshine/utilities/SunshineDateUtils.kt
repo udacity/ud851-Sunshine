@@ -13,25 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.sunshine.utilities;
+package com.example.android.sunshine.utilities
 
-import android.content.Context;
-import android.text.format.DateUtils;
+import android.content.Context
+import android.text.format.DateUtils
 
-import com.example.android.sunshine.R;
+import com.example.android.sunshine.R
+import com.example.android.sunshine.utilities.SunshineDateUtils.DAY_IN_MILLIS
 
-import java.text.SimpleDateFormat;
-import java.util.TimeZone;
+import java.text.SimpleDateFormat
+import java.util.TimeZone
 
 /**
  * Class for handling date conversions that are useful for Sunshine.
  */
-public final class SunshineDateUtils {
+object SunshineDateUtils {
 
-    public static final long SECOND_IN_MILLIS = 1000;
-    public static final long MINUTE_IN_MILLIS = SECOND_IN_MILLIS * 60;
-    public static final long HOUR_IN_MILLIS = MINUTE_IN_MILLIS * 60;
-    public static final long DAY_IN_MILLIS = HOUR_IN_MILLIS * 24;
+    val SECOND_IN_MILLIS: Long = 1000
+    val MINUTE_IN_MILLIS = SECOND_IN_MILLIS * 60
+    val HOUR_IN_MILLIS = MINUTE_IN_MILLIS * 60
+    val DAY_IN_MILLIS = HOUR_IN_MILLIS * 24
 
     /**
      * This method returns the number of days since the epoch (January 01, 1970, 12:00 Midnight UTC)
@@ -41,10 +42,10 @@ public final class SunshineDateUtils {
      *
      * @return The number of days in UTC time from the epoch.
      */
-    public static long getDayNumber(long date) {
-        TimeZone tz = TimeZone.getDefault();
-        long gmtOffset = tz.getOffset(date);
-        return (date + gmtOffset) / DAY_IN_MILLIS;
+    fun getDayNumber(date: Long): Long {
+        val tz = TimeZone.getDefault()
+        val gmtOffset = tz.getOffset(date).toLong()
+        return (date + gmtOffset) / DAY_IN_MILLIS
     }
 
     /**
@@ -55,10 +56,9 @@ public final class SunshineDateUtils {
      *
      * @return The UTC date at 12 midnight
      */
-    public static long normalizeDate(long date) {
+    fun normalizeDate(date: Long): Long {
         // Normalize the start date to the beginning of the (UTC) day in local time
-        long retValNew = date / DAY_IN_MILLIS * DAY_IN_MILLIS;
-        return retValNew;
+        return date / DAY_IN_MILLIS * DAY_IN_MILLIS
     }
 
     /**
@@ -69,10 +69,10 @@ public final class SunshineDateUtils {
      * @param utcDate The UTC datetime to convert to a local datetime, in milliseconds.
      * @return The local date (the UTC datetime - the TimeZone offset) in milliseconds.
      */
-    public static long getLocalDateFromUTC(long utcDate) {
-        TimeZone tz = TimeZone.getDefault();
-        long gmtOffset = tz.getOffset(utcDate);
-        return utcDate - gmtOffset;
+    fun getLocalDateFromUTC(utcDate: Long): Long {
+        val tz = TimeZone.getDefault()
+        val gmtOffset = tz.getOffset(utcDate).toLong()
+        return utcDate - gmtOffset
     }
 
     /**
@@ -82,16 +82,17 @@ public final class SunshineDateUtils {
      * @param localDate The local datetime to convert to a UTC datetime, in milliseconds.
      * @return The UTC date (the local datetime + the TimeZone offset) in milliseconds.
      */
-    public static long getUTCDateFromLocal(long localDate) {
-        TimeZone tz = TimeZone.getDefault();
-        long gmtOffset = tz.getOffset(localDate);
-        return localDate + gmtOffset;
+    fun getUTCDateFromLocal(localDate: Long): Long {
+        val tz = TimeZone.getDefault()
+        val gmtOffset = tz.getOffset(localDate).toLong()
+        return localDate + gmtOffset
     }
 
     /**
      * Helper method to convert the database representation of the date into something to display
      * to users.  As classy and polished a user experience as "20140102" is, we can do better.
-     * <p/>
+     *
+     *
      * The day string for forecast uses the following logic:
      * For today: "Today, June 8"
      * For tomorrow:  "Tomorrow"
@@ -101,24 +102,24 @@ public final class SunshineDateUtils {
      * @param context      Context to use for resource localization
      * @param dateInMillis The date in milliseconds (UTC)
      * @param showFullDate Used to show a fuller-version of the date, which always contains either
-     *                     the day of the week, today, or tomorrow, in addition to the date.
+     * the day of the week, today, or tomorrow, in addition to the date.
      *
      * @return A user-friendly representation of the date such as "Today, June 8", "Tomorrow",
      * or "Friday"
      */
-    public static String getFriendlyDateString(Context context, long dateInMillis, boolean showFullDate) {
+    fun getFriendlyDateString(context: Context, dateInMillis: Long, showFullDate: Boolean): String {
 
-        long localDate = getLocalDateFromUTC(dateInMillis);
-        long dayNumber = getDayNumber(localDate);
-        long currentDayNumber = getDayNumber(System.currentTimeMillis());
+        val localDate = getLocalDateFromUTC(dateInMillis)
+        val dayNumber = getDayNumber(localDate)
+        val currentDayNumber = getDayNumber(System.currentTimeMillis())
 
         if (dayNumber == currentDayNumber || showFullDate) {
             /*
              * If the date we're building the String for is today's date, the format
              * is "Today, June 24"
              */
-            String dayName = getDayName(context, localDate);
-            String readableDate = getReadableDateString(context, localDate);
+            val dayName = getDayName(context, localDate)
+            val readableDate = getReadableDateString(context, localDate)
             if (dayNumber - currentDayNumber < 2) {
                 /*
                  * Since there is no localized format that returns "Today" or "Tomorrow" in the API
@@ -130,21 +131,21 @@ public final class SunshineDateUtils {
                  * documentation on DateFormat#getBestDateTimePattern(Locale, String)
                  * https://developer.android.com/reference/android/text/format/DateFormat.html#getBestDateTimePattern
                  */
-                String localizedDayName = new SimpleDateFormat("EEEE").format(localDate);
-                return readableDate.replace(localizedDayName, dayName);
+                val localizedDayName = SimpleDateFormat("EEEE").format(localDate)
+                return readableDate.replace(localizedDayName, dayName)
             } else {
-                return readableDate;
+                return readableDate
             }
         } else if (dayNumber < currentDayNumber + 7) {
             /* If the input date is less than a week in the future, just return the day name. */
-            return getDayName(context, localDate);
+            return getDayName(context, localDate)
         } else {
-            int flags = DateUtils.FORMAT_SHOW_DATE
-                    | DateUtils.FORMAT_NO_YEAR
-                    | DateUtils.FORMAT_ABBREV_ALL
-                    | DateUtils.FORMAT_SHOW_WEEKDAY;
+            val flags = (DateUtils.FORMAT_SHOW_DATE
+                    or DateUtils.FORMAT_NO_YEAR
+                    or DateUtils.FORMAT_ABBREV_ALL
+                    or DateUtils.FORMAT_SHOW_WEEKDAY)
 
-            return DateUtils.formatDateTime(context, localDate, flags);
+            return DateUtils.formatDateTime(context, localDate, flags)
         }
     }
 
@@ -157,41 +158,41 @@ public final class SunshineDateUtils {
      *
      * @return The formatted date string
      */
-    private static String getReadableDateString(Context context, long timeInMillis) {
-        int flags = DateUtils.FORMAT_SHOW_DATE
-                | DateUtils.FORMAT_NO_YEAR
-                | DateUtils.FORMAT_SHOW_WEEKDAY;
+    private fun getReadableDateString(context: Context, timeInMillis: Long): String {
+        val flags = (DateUtils.FORMAT_SHOW_DATE
+                or DateUtils.FORMAT_NO_YEAR
+                or DateUtils.FORMAT_SHOW_WEEKDAY)
 
-        return DateUtils.formatDateTime(context, timeInMillis, flags);
+        return DateUtils.formatDateTime(context, timeInMillis, flags)
     }
 
     /**
      * Given a day, returns just the name to use for that day.
-     *   E.g "today", "tomorrow", "Wednesday".
+     * E.g "today", "tomorrow", "Wednesday".
      *
      * @param context      Context to use for resource localization
      * @param dateInMillis The date in milliseconds (local time)
      *
      * @return the string day of the week
      */
-    private static String getDayName(Context context, long dateInMillis) {
+    private fun getDayName(context: Context, dateInMillis: Long): String {
         /*
          * If the date is today, return the localized version of "Today" instead of the actual
          * day name.
          */
-        long dayNumber = getDayNumber(dateInMillis);
-        long currentDayNumber = getDayNumber(System.currentTimeMillis());
+        val dayNumber = getDayNumber(dateInMillis)
+        val currentDayNumber = getDayNumber(System.currentTimeMillis())
         if (dayNumber == currentDayNumber) {
-            return context.getString(R.string.today);
+            return context.getString(R.string.today)
         } else if (dayNumber == currentDayNumber + 1) {
-            return context.getString(R.string.tomorrow);
+            return context.getString(R.string.tomorrow)
         } else {
             /*
              * Otherwise, if the day is not today, the format is just the day of the week
              * (e.g "Wednesday")
              */
-            SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");
-            return dayFormat.format(dateInMillis);
+            val dayFormat = SimpleDateFormat("EEEE")
+            return dayFormat.format(dateInMillis)
         }
     }
 }
