@@ -53,6 +53,9 @@
         <activity android:name=".SettingsActivity"/>
 
         <!-- TODO (4) Register WeatherProvider in the manifest with the correct authorities -->
-
+        <provider
+            android:authorities="@string/content_authority"
+            android:name=".data.WeatherProvider"
+            android:exported="false" />
     </application>
 </manifest>
