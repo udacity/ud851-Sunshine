@@ -49,7 +49,9 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
     private TextView mErrorMessageDisplay;
 
     private ProgressBar mLoadingIndicator;
-
+    
+    //TODO (8) Add a member int variable "FORECAST_LOADER_ID", initialize with value as 0
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
