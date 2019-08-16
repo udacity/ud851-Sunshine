@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity implements
     private TextView mErrorMessageDisplay;
 
     private ProgressBar mLoadingIndicator;
-
+    
+    //COMPLETED (8) Added a member int variable "FORECAST_LOADER_ID", initialize with value as 0
     private static final int FORECAST_LOADER_ID = 0;
 
     @Override
