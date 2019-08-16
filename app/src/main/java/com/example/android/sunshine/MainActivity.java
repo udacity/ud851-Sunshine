@@ -147,14 +147,15 @@ public class MainActivity extends AppCompatActivity implements
     public Loader<String[]> onCreateLoader(int id, final Bundle loaderArgs) {
 
         return new AsyncTaskLoader<String[]>(this) {
-
-            /* This String array will hold and help cache our weather data */
-            String[] mWeatherData = null;
-
+            
             // COMPLETED (3) Cache the weather data in a member variable and deliver it in onStartLoading.
             /**
              * Subclasses of AsyncTaskLoader must implement this to take care of loading their data.
              */
+                
+            /* This String array will hold and help cache our weather data */
+            String[] mWeatherData = null;
+                
             @Override
             protected void onStartLoading() {
                 if (mWeatherData != null) {
