@@ -21,11 +21,18 @@ import android.support.v7.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     // TODO (1) Create a field to store the weather display TextView
+    TextView mToysListTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forecast);
+        setContentView(R.layout.activity_forecast)
+         mToysListTextView = (TextView) findViewById(R.id.tv_weather_data);
+        String[] array = ToyBox.getToyNames();
+        for (int i = 0; i < array.length; i++)
+        {
+            mToysListTextView.append(array[i]+"\n");
+        }
 
         // TODO (2) Use findViewById to get a reference to the weather display TextView
 
