@@ -199,6 +199,7 @@ public class MainActivity extends AppCompatActivity implements
              *
              * @param data The result of the load
              */
+            @Override    
             public void deliverResult(String[] data) {
                 mWeatherData = data;
                 super.deliverResult(data);
