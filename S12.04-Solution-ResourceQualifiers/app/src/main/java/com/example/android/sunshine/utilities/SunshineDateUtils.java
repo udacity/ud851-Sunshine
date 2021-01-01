@@ -293,7 +293,7 @@ public final class SunshineDateUtils {
         long daysFromEpochToProvidedDate = elapsedDaysSinceEpoch(dateInMillis);
         long daysFromEpochToToday = elapsedDaysSinceEpoch(System.currentTimeMillis());
 
-        int daysAfterToday = (int) (daysFromEpochToProvidedDate - daysFromEpochToToday);
+        int daysAfterToday = (int) (daysFromEpochToProvidedDate - daysFromEpochToToday)+1;
 
         switch (daysAfterToday) {
             case 0:
