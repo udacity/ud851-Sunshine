@@ -336,7 +336,7 @@ public final class SunshineWeatherUtils {
             return R.drawable.ic_rain;
         } else if (weatherId >= 600 && weatherId <= 622) {
             return R.drawable.ic_snow;
-        } else if (weatherId >= 701 && weatherId <= 761) {
+        } else if (weatherId >= 701 && weatherId < 761) {
             return R.drawable.ic_fog;
         } else if (weatherId == 761 || weatherId == 781) {
             return R.drawable.ic_storm;
@@ -375,7 +375,7 @@ public final class SunshineWeatherUtils {
             return R.drawable.art_rain;
         } else if (weatherId >= 600 && weatherId <= 622) {
             return R.drawable.art_snow;
-        } else if (weatherId >= 701 && weatherId <= 761) {
+        } else if (weatherId >= 701 && weatherId < 761) {
             return R.drawable.art_fog;
         } else if (weatherId == 761 || weatherId == 771 || weatherId == 781) {
             return R.drawable.art_storm;
