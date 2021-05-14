@@ -160,6 +160,8 @@ public class WeatherProvider extends ContentProvider {
                         long _id = db.insert(WeatherContract.WeatherEntry.TABLE_NAME, null, value);
                         if (_id != -1) {
                             rowsInserted++;
+                        } else {
+                            throw new SQLException("Failed to insert item: " + value + " into uri: " + uri);
                         }
                     }
                     db.setTransactionSuccessful();
