@@ -149,7 +149,7 @@ public class DetailActivity extends AppCompatActivity {
 
 //  TODO (24) Override onLoadFinished
 //      TODO (25) Check before doing anything that the Cursor has valid data
-//      TODO (26) Display a readable data string
+//      TODO (26) Display a readable date string
 //      TODO (27) Display the weather description (using SunshineWeatherUtils)
 //      TODO (28) Display the high temperature
 //      TODO (29) Display the low temperature
