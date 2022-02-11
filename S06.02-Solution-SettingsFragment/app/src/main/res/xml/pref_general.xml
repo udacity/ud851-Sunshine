@@ -16,9 +16,7 @@
 -->
 <!--COMPLETED (2) Create an xml resource directory-->
 <!--COMPLETED (3) Add a PreferenceScreen with an EditTextPreference and ListPreference within the newly created xml resource directory-->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <EditTextPreference
         android:defaultValue="@string/pref_location_default"
