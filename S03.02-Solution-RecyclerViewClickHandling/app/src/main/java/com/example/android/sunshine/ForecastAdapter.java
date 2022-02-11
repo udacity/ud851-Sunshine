@@ -39,7 +39,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     private final ForecastAdapterOnClickHandler mClickHandler;
 
     // COMPLETED (1) Add an interface called ForecastAdapterOnClickHandler
-    // COMPLETED (2) Within that interface, define a void method that access a String as a parameter
+    // COMPLETED (2) Within that interface, define a void method that accepts/takes a String as a parameter
     /**
      * The interface that receives onClick messages.
      */
