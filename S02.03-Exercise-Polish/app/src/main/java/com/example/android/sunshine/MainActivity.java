@@ -21,6 +21,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.android.sunshine.data.SunshinePreferences;
@@ -33,10 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mWeatherTextView;
 
-    // TODO (6) Add a TextView variable for the error message display
-
-    // TODO (16) Add a ProgressBar variable to show and hide the progress bar
-
+    private TextView mErrorMessageDisplay;
+    private ProgressBar mProgressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +48,8 @@ public class MainActivity extends AppCompatActivity {
          */
         mWeatherTextView = (TextView) findViewById(R.id.tv_weather_data);
 
-        // TODO (7) Find the TextView for the error message using findViewById
-
-        // TODO (17) Find the ProgressBar using findViewById
-
+        mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message);
+        mProgressBar = (ProgressBar) findViewById(R.id.pb_loading_data);
         /* Once all of our views are setup, we can load the weather data. */
         loadWeatherData();
     }
@@ -61,18 +59,27 @@ public class MainActivity extends AppCompatActivity {
      * background method to get the weather data in the background.
      */
     private void loadWeatherData() {
-        // TODO (20) Call showWeatherDataView before executing the AsyncTask
+        showWeatherDataView();
         String location = SunshinePreferences.getPreferredWeatherLocation(this);
         new FetchWeatherTask().execute(location);
     }
 
-    // TODO (8) Create a method called showWeatherDataView that will hide the error message and show the weather data
-
-    // TODO (9) Create a method called showErrorMessage that will hide the weather data and show the error message
-
+    private void showWeatherDataView() {
+        mErrorMessageDisplay.setVisibility(View.INVISIBLE);
+        mWeatherTextView.setVisibility(View.VISIBLE);
+    }
+    private void showErrorMessage() {
+        mErrorMessageDisplay.setVisibility(View.VISIBLE);
+        mWeatherTextView.setVisibility(View.INVISIBLE);
+    }
     public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
 
-        // TODO (18) Within your AsyncTask, override the method onPreExecute and show the loading indicator
+
+
+        @Override
+        protected void onPreExecute() {
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
 
         @Override
         protected String[] doInBackground(String... params) {
@@ -102,10 +109,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String[] weatherData) {
-            // TODO (19) As soon as the data is finished loading, hide the loading indicator
-
+            mProgressBar.setVisibility(View.INVISIBLE);
             if (weatherData != null) {
-                // TODO (11) If the weather data was not null, make sure the data view is visible
+                showWeatherDataView();
                 /*
                  * Iterate through the array and append the Strings to the TextView. The reason why we add
                  * the "\n\n\n" after the String is to give visual separation between each String in the
@@ -114,8 +120,9 @@ public class MainActivity extends AppCompatActivity {
                 for (String weatherString : weatherData) {
                     mWeatherTextView.append((weatherString) + "\n\n\n");
                 }
+            } else {
+                showErrorMessage();
             }
-            // TODO (10) If the weather data was null, show the error message
 
         }
     }
