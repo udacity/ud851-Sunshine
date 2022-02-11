@@ -242,23 +242,17 @@ public class DetailActivity extends AppCompatActivity implements
         /*
          * Before we bind the data to the UI that will display that data, we need to check the
          * cursor to make sure we have the results that we are expecting. In order to do that, we
-         * check to make sure the cursor is not null and then we call moveToFirst on the cursor.
-         * Although it may not seem obvious at first, moveToFirst will return true if it contains
-         * a valid first row of data.
+         * check to make sure the cursor is not null and is not empty.
          *
          * If we have valid data, we want to continue on to bind that data to the UI. If we don't
          * have any data to bind, we just return from this method.
          */
-        boolean cursorHasValidData = false;
-        if (data != null && data.moveToFirst()) {
-            /* We have valid data, continue on to bind the data to the UI */
-            cursorHasValidData = true;
-        }
-
-        if (!cursorHasValidData) {
+        if (data == null || data.getCount() == 0) {
             /* No data to display, simply return and do nothing */
             return;
         }
+        /* We have valid data, point the cursor to the first row and continue on to bind the data to the UI */
+        data.moveToFirst();
 
 //      COMPLETED (26) Display a readable data string
         /****************
